@@ -10,12 +10,13 @@ from lxml import etree
 from models import Activity, Course, CourseSubmodule
 from utils import get_safestring
 
-course_modules_mapping = {}
+COURSE_CODE = "CLMML11"
 
-DATA_FOLDER = Path(CONFIG.DATA_PATH, CONFIG.JOURNEY_CODE)
+DATA_FOLDER = Path(CONFIG.DATA_PATH, COURSE_CODE)
 DATA_FOLDER.mkdir(exist_ok=True)
 
-with open(DATA_FOLDER.joinpath(f"{CONFIG.JOURNEY_CODE}-Courses.csv")) as f:
+course_modules_mapping = {}
+with open(DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv")) as f:
     course_meta = io.StringIO(f.read())
 
 csvreader = csv.DictReader(course_meta)
@@ -43,7 +44,7 @@ for course in csvreader:
     course_modules_mapping[course["title"]] = course_modules
 
     with open(
-        DATA_FOLDER.joinpath(f"{CONFIG.JOURNEY_CODE}-Modules-Meta.csv"),
+        DATA_FOLDER.joinpath(f"{COURSE_CODE}-Modules-Meta.csv"),
         "a",
         encoding="utf-8",
     ) as f:

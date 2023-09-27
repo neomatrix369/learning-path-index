@@ -35,8 +35,3 @@ class CourseSubmodule(BaseModel):
 
 class Course(BaseModel):
     __root__: list[CourseSubmodule]  # __root__ == 🌟
-
-
-# with open(r"C:\Users\user\Documents\coding\learning-path-index\sample.json", "r") as f:
-#     for c in Course.parse_raw(f.read()).__root__:
-#         print(c, "\n\n\n\n")
