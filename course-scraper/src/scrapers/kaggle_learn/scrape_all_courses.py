@@ -19,7 +19,7 @@ KAGGLE_COURSE_API_URL = (
 )
 
 KAGGLE_DATA_PATH = Path(CONFIG.DATA_PATH, "KaggleLearnCourses")
-KAGGLE_DATA_PATH.mkdir(exist_ok=True)
+KAGGLE_DATA_PATH.mkdir(exist_ok=True, parents=True)
 
 
 def get_page_details(url: str) -> dict:
