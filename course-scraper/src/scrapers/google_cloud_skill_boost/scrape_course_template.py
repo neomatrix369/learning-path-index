@@ -7,13 +7,13 @@ from pathlib import Path
 import requests
 from config import CONFIG
 from lxml import etree
-from models import Activity, Course, CourseSubmodule
+from scrapers.google_cloud_skill_boost.models import Activity, Course, CourseSubmodule
 from utils import get_safestring
 
 COURSE_CODE = "CLMML11"
 
 DATA_FOLDER = Path(CONFIG.DATA_PATH, COURSE_CODE)
-DATA_FOLDER.mkdir(exist_ok=True)
+DATA_FOLDER.mkdir(exist_ok=True, parents=True)
 
 course_modules_mapping = {}
 with open(DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv")) as f:

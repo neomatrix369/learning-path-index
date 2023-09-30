@@ -65,9 +65,9 @@ class KaggleCourse(BaseModel):
 
     def write_course_summary_to_file(self, f):
         csvwriter = writer(f)
+        csvwriter.writerow(["name", "description", "duration", "url", "authors"])
         csvwriter.writerows(
             [
-                ["name", "description", "duration", "url", "authors"],
                 [
                     self.name,
                     self.description,
