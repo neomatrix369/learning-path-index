@@ -1,33 +1,33 @@
-Tab name,Source,Course Level,Duration,Prerequisites,Prework,Course / Learning material,Type (Free or Paid)
-CLMML00,Google Developers,Beginners,70 mins,No,No,Introduction to Machine Learning,Free
-CLMML01,Google Developers,Beginners to Intermediate,,"Yes, a handful ",Yes,Machine Learning Crash Course (Foundation),Free
-CLMML02,Google Developers,Beginners to Intermediate,45 mins,No,No,Problem Framing (ML related),Free
-CLMML03,Google Developers,Beginners to Intermediate,,No,No,Data Preparation and Feature Engineering in ML,Free
-CLMML04,Google Developers,Beginners to Intermediate,,Yes,No,Testing and Debugging,Free
-CLMML05,Google Developers,Intermediate to Advanced,,No,No,Decision Forests,Free
-CLMML06,Google Developers,Intermediate to Advanced,,No,No,Recommendation Systems,Free
-CLMML07,Google Developers,Intermediate to Advanced,,No,No,Clustering,Free
-CLMML08,Google Developers,Intermediate to Advanced,,No,No,Generative Adversarial Networks,Free
-CLMML09,Google Developers,Intermediate to Advanced,,No,No,Image Classification,Free
-CLMML10,Google Developers,Intermediate to Advanced,,No,No,Fairness in Perspective API,Free
-CLMF001,Fast.ai,Intermediate to Advanced,,Yes,Varies,Fast.ai,Free
-CLMAIE1,IBM,Beginners to Intermediate,,No,No,AI Ethics Resources,Free
-CLMML10,Google Developers,Intermediate to Advanced,,Yes,Yes,ML Engineer / Data Scientist Google Cloud Learning Path,Free
-CLMML11,Google Cloud Skills Boost,Intermediate to Advanced,,Yes,Yes,Machine Learning Engineer Learning Path,Free
-CLMML12,Google Developers,Intermediate to Advanced,,Yes,Yes,Machine Learning Advance Courses,Free
-CLMK001,Kaggle Learn,Beginners to Intermediate,,No,No,Kaggle:Courses,Free
-CLMG001,Google Cloud Skills Boost,Intermediate,2 days,No,No,Data Engineer - Preparing for the Google Cloud Professional Data Engineer Exam,Free during the mentorship program
-CLMG002,Google Cloud Skills Boost,Beginners,1 day,No,No,Data Engineer - Google Cloud Big Data and Machine Learning Fundamentals,Free during the mentorship program
-CLMG003,Google Cloud Skills Boost,Beginners,2 days,No,No,Data Engineer - Modernizing Data Lakes and Data Warehouses with Google Cloud,Free during the mentorship program
-CLMG004,Google Cloud Skills Boost,Beginners,3 days,No,No,Data Engineer - Building Batch Data Pipelines on Google Cloud,Free during the mentorship program
-CLMG005,Google Cloud Skills Boost,Beginners,3 days,No,No,Data Engineer - Building Resilient Streaming Analytics Systems on Google Cloud,Free during the mentorship program
-CLMG006,Google Cloud Skills Boost,Beginners,5 days,No,No,"Data Engineer - Smart Analytics, Machine Learning, and AI on Google Cloud",Free during the mentorship program
-CLMG007,Google Cloud Skills Boost,Intermediate,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Foundations,Free during the mentorship program
-CLMG008,Google Cloud Skills Boost,Advanced,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Develop Pipelines,Free during the mentorship program
-CLMG009,Google Cloud Skills Boost,Advanced,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Operations,Free during the mentorship program
-CLMG010,Google Cloud Skills Boost,Beginners,45 minutes,No,No,Data Engineer - Lab: A Tour of Google Cloud Hands-on Labs,Free during the mentorship program
-CLMG011,Google Cloud Skills Boost,Beginners,1 hour,No,No,Data Engineer - Lab: Engineer Data in Google Cloud,Free during the mentorship program
-CLMG012,Google Cloud Skills Boost,Beginners,7 hours,No,No,"Data Engineer - Quest: Perform Foundational Data, ML, and AI Tasks in Google Cloud",Free during the mentorship program
-CLMG013,Google Cloud Skills Boost,Beginners,1 hour 30 minutes,No,No,Data Engineer - Quest: Build and Optimize Data Warehouses with BigQuery,Free during the mentorship program
-CLMG014,Google Cloud Skills Boost,Intermediate,6 hours,No,No,Data Engineer - Quest: Engineer Data in Google Cloud,Free during the mentorship program
-CLMG015,Google Cloud Skills Boost,Intermediate,4 hours,No,No,Data Engineer - Quest: Data Engineer,Free during the mentorship program
+Tab name,Source,Course Level,Duration,Prerequisites,Prework,Course / Learning material,Course / Learning material Link,Type (Free or Paid)
+CLMML00,Google Developers,Beginners,70 mins,No,No,Introduction to Machine Learning,https://developers.google.com/machine-learning/intro-to-ml,Free
+CLMML01,Google Developers,Beginners to Intermediate,,"Yes, a handful ",Yes,Machine Learning Crash Course (Foundation),https://developers.google.com/machine-learning/crash-course,Free
+CLMML02,Google Developers,Beginners to Intermediate,45 mins,No,No,Problem Framing (ML related),https://developers.google.com/machine-learning/problem-framing,Free
+CLMML03,Google Developers,Beginners to Intermediate,,No,No,Data Preparation and Feature Engineering in ML,https://developers.google.com/machine-learning/data-prep,Free
+CLMML04,Google Developers,Beginners to Intermediate,,Yes,No,Testing and Debugging,https://developers.google.com/machine-learning/testing-debugging,Free
+CLMML05,Google Developers,Intermediate to Advanced,,No,No,Decision Forests,https://developers.google.com/machine-learning/decision-forests,Free
+CLMML06,Google Developers,Intermediate to Advanced,,No,No,Recommendation Systems,https://developers.google.com/machine-learning/recommendation,Free
+CLMML07,Google Developers,Intermediate to Advanced,,No,No,Clustering,https://developers.google.com/machine-learning/clustering,Free
+CLMML08,Google Developers,Intermediate to Advanced,,No,No,Generative Adversarial Networks,https://developers.google.com/machine-learning/gan,Free
+CLMML09,Google Developers,Intermediate to Advanced,,No,No,Image Classification,https://developers.google.com/machine-learning/practica/image-classification,Free
+CLMML10,Google Developers,Intermediate to Advanced,,No,No,Fairness in Perspective API,https://developers.google.com/machine-learning/practica/fairness-indicators,Free
+CLMF001,Fast.ai,Intermediate to Advanced,,Yes,Varies,Fast.ai,https://course.fast.ai/,Free
+CLMAIE1,IBM,Beginners to Intermediate,,No,No,AI Ethics Resources,https://www.ibm.com/topics/ai-ethics,Free
+CLMML10,Google Developers,Intermediate to Advanced,,Yes,Yes,ML Engineer / Data Scientist Google Cloud Learning Path,https://docs.google.com/presentation/d/18dV09U9JqqB01RbMrfwRUB3LkSAu5L8R/edit#slide=id.p1,Free
+CLMML11,Google Cloud Skills Boost,Intermediate to Advanced,,Yes,Yes,Machine Learning Engineer Learning Path,https://www.cloudskillsboost.google/paths/17,Free
+CLMML12,Google Developers,Intermediate to Advanced,,Yes,Yes,Machine Learning Advance Courses,https://developers.google.com/machine-learning/advanced-courses,Free
+CLMK001,Kaggle Learn,Beginners to Intermediate,,No,No,Kaggle:Courses,https://www.kaggle.com/learn,Free
+CLMG001,Google Cloud Skills Boost,Intermediate,2 days,No,No,Data Engineer - Preparing for the Google Cloud Professional Data Engineer Exam,https://www.cloudskillsboost.google/course_templates/72?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346376,Free during the mentorship program
+CLMG002,Google Cloud Skills Boost,Beginners,1 day,No,No,Data Engineer - Google Cloud Big Data and Machine Learning Fundamentals,https://www.cloudskillsboost.google/course_templates/3?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346323,Free during the mentorship program
+CLMG003,Google Cloud Skills Boost,Beginners,2 days,No,No,Data Engineer - Modernizing Data Lakes and Data Warehouses with Google Cloud,https://www.cloudskillsboost.google/course_templates/54?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346330,Free during the mentorship program
+CLMG004,Google Cloud Skills Boost,Beginners,3 days,No,No,Data Engineer - Building Batch Data Pipelines on Google Cloud,https://www.cloudskillsboost.google/course_templates/53?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346338,Free during the mentorship program
+CLMG005,Google Cloud Skills Boost,Beginners,3 days,No,No,Data Engineer - Building Resilient Streaming Analytics Systems on Google Cloud,https://www.cloudskillsboost.google/course_templates/52?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346347,Free during the mentorship program
+CLMG006,Google Cloud Skills Boost,Beginners,5 days,No,No,"Data Engineer - Smart Analytics, Machine Learning, and AI on Google Cloud",https://www.cloudskillsboost.google/course_templates/55?catalog_rank=%7B%22rank%22%3A2%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346351,Free during the mentorship program
+CLMG007,Google Cloud Skills Boost,Intermediate,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Foundations,https://www.cloudskillsboost.google/course_templates/218?catalog_rank=%7B%22rank%22%3A2%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346355,Free during the mentorship program
+CLMG008,Google Cloud Skills Boost,Advanced,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Develop Pipelines,https://www.cloudskillsboost.google/course_templates/229?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346358,Free during the mentorship program
+CLMG009,Google Cloud Skills Boost,Advanced,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Operations,https://www.cloudskillsboost.google/course_templates/264?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346360,Free during the mentorship program
+CLMG010,Google Cloud Skills Boost,Beginners,45 minutes,No,No,Data Engineer - Lab: A Tour of Google Cloud Hands-on Labs,https://www.cloudskillsboost.google/focuses/2794?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=25346362,Free during the mentorship program
+CLMG011,Google Cloud Skills Boost,Beginners,1 hour,No,No,Data Engineer - Lab: Engineer Data in Google Cloud,https://www.cloudskillsboost.google/focuses/12379?catalog_rank=%7B%22rank%22%3A4%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=25346300,Free during the mentorship program
+CLMG012,Google Cloud Skills Boost,Beginners,7 hours,No,No,"Data Engineer - Quest: Perform Foundational Data, ML, and AI Tasks in Google Cloud",https://www.cloudskillsboost.google/quests/117?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346364,Free during the mentorship program
+CLMG013,Google Cloud Skills Boost,Beginners,1 hour 30 minutes,No,No,Data Engineer - Quest: Build and Optimize Data Warehouses with BigQuery,https://www.cloudskillsboost.google/focuses/14341?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=25346367,Free during the mentorship program
+CLMG014,Google Cloud Skills Boost,Intermediate,6 hours,No,No,Data Engineer - Quest: Engineer Data in Google Cloud,https://www.cloudskillsboost.google/quests/132?catalog_rank=%7B%22rank%22%3A2%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346300,Free during the mentorship program
+CLMG015,Google Cloud Skills Boost,Intermediate,4 hours,No,No,Data Engineer - Quest: Data Engineer,https://www.cloudskillsboost.google/quests/25?catalog_rank=%7B%22rank%22%3A1%2C%22num_filters%22%3A0%2C%22has_search%22%3Atrue%7D&search_id=25346300,Free during the mentorship program
