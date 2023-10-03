@@ -1,0 +1,33 @@
+Tab name,Source,Course Level,Duration,Prerequisites,Prework,Course / Learning material,Type (Free or Paid)
+CLMML00,Google Developers,Beginners,70 mins,No,No,Introduction to Machine Learning,Free
+CLMML01,Google Developers,Beginners to Intermediate,,"Yes, a handful ",Yes,Machine Learning Crash Course (Foundation),Free
+CLMML02,Google Developers,Beginners to Intermediate,45 mins,No,No,Problem Framing (ML related),Free
+CLMML03,Google Developers,Beginners to Intermediate,,No,No,Data Preparation and Feature Engineering in ML,Free
+CLMML04,Google Developers,Beginners to Intermediate,,Yes,No,Testing and Debugging,Free
+CLMML05,Google Developers,Intermediate to Advanced,,No,No,Decision Forests,Free
+CLMML06,Google Developers,Intermediate to Advanced,,No,No,Recommendation Systems,Free
+CLMML07,Google Developers,Intermediate to Advanced,,No,No,Clustering,Free
+CLMML08,Google Developers,Intermediate to Advanced,,No,No,Generative Adversarial Networks,Free
+CLMML09,Google Developers,Intermediate to Advanced,,No,No,Image Classification,Free
+CLMML10,Google Developers,Intermediate to Advanced,,No,No,Fairness in Perspective API,Free
+CLMF001,Fast.ai,Intermediate to Advanced,,Yes,Varies,Fast.ai,Free
+CLMAIE1,IBM,Beginners to Intermediate,,No,No,AI Ethics Resources,Free
+CLMML10,Google Developers,Intermediate to Advanced,,Yes,Yes,ML Engineer / Data Scientist Google Cloud Learning Path,Free
+CLMML11,Google Cloud Skills Boost,Intermediate to Advanced,,Yes,Yes,Machine Learning Engineer Learning Path,Free
+CLMML12,Google Developers,Intermediate to Advanced,,Yes,Yes,Machine Learning Advance Courses,Free
+CLMK001,Kaggle Learn,Beginners to Intermediate,,No,No,Kaggle:Courses,Free
+CLMG001,Google Cloud Skills Boost,Intermediate,2 days,No,No,Data Engineer - Preparing for the Google Cloud Professional Data Engineer Exam,Free during the mentorship program
+CLMG002,Google Cloud Skills Boost,Beginners,1 day,No,No,Data Engineer - Google Cloud Big Data and Machine Learning Fundamentals,Free during the mentorship program
+CLMG003,Google Cloud Skills Boost,Beginners,2 days,No,No,Data Engineer - Modernizing Data Lakes and Data Warehouses with Google Cloud,Free during the mentorship program
+CLMG004,Google Cloud Skills Boost,Beginners,3 days,No,No,Data Engineer - Building Batch Data Pipelines on Google Cloud,Free during the mentorship program
+CLMG005,Google Cloud Skills Boost,Beginners,3 days,No,No,Data Engineer - Building Resilient Streaming Analytics Systems on Google Cloud,Free during the mentorship program
+CLMG006,Google Cloud Skills Boost,Beginners,5 days,No,No,"Data Engineer - Smart Analytics, Machine Learning, and AI on Google Cloud",Free during the mentorship program
+CLMG007,Google Cloud Skills Boost,Intermediate,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Foundations,Free during the mentorship program
+CLMG008,Google Cloud Skills Boost,Advanced,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Develop Pipelines,Free during the mentorship program
+CLMG009,Google Cloud Skills Boost,Advanced,,No,No,Data Engineer - Serverless Data Processing with Dataflow: Operations,Free during the mentorship program
+CLMG010,Google Cloud Skills Boost,Beginners,45 minutes,No,No,Data Engineer - Lab: A Tour of Google Cloud Hands-on Labs,Free during the mentorship program
+CLMG011,Google Cloud Skills Boost,Beginners,1 hour,No,No,Data Engineer - Lab: Engineer Data in Google Cloud,Free during the mentorship program
+CLMG012,Google Cloud Skills Boost,Beginners,7 hours,No,No,"Data Engineer - Quest: Perform Foundational Data, ML, and AI Tasks in Google Cloud",Free during the mentorship program
+CLMG013,Google Cloud Skills Boost,Beginners,1 hour 30 minutes,No,No,Data Engineer - Quest: Build and Optimize Data Warehouses with BigQuery,Free during the mentorship program
+CLMG014,Google Cloud Skills Boost,Intermediate,6 hours,No,No,Data Engineer - Quest: Engineer Data in Google Cloud,Free during the mentorship program
+CLMG015,Google Cloud Skills Boost,Intermediate,4 hours,No,No,Data Engineer - Quest: Data Engineer,Free during the mentorship program
