@@ -36,7 +36,7 @@ Explore exciting possibilities for enhancing the Learning Path Index:
 
 4. **Keyword Extraction**: Automatically extract keywords from course websites and byte-sized modules to enhance search functionality.
 
-5. **Educational Data Analysis (EDA)**: Conduct exploratory data analysis on course materials to gain valuable insights and trends.
+5. **Exploratory Data Analysis (EDA)**: Conduct exploratory data analysis on course materials to gain valuable insights into the content of the datasets.
 
 6. **NLP Profiler**: Implement NLP Profiler and Pandas Profiler to analyze courses by various parameters, uncovering hidden patterns.
 
