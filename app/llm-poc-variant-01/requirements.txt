@@ -1,0 +1,6 @@
+langchain
+tqdm
+joblib
+chromadb==0.3.29
+sentence-transformers
+pymupdf
