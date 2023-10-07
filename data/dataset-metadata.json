@@ -1,0 +1,83 @@
+{
+  "errorMessageNullable": null,
+  "info": {
+    "datasetSlugNullable": "learning-path-index-dataset",
+    "ownerUserNullable": "neomatrix369",
+    "usabilityRatingNullable": 1.0,
+    "titleNullable": "Learning Path Index Dataset",
+    "subtitleNullable": "A comprehensive dataset of Data Science, ML and AI learning paths and courses",
+    "descriptionNullable": "# Description\nThe **Learning Path Index Dataset** is a comprehensive collection of byte-sized courses and learning materials tailored for individuals eager to delve into the fields of Data Science, Machine Learning and Artificial Intelligence (AI), making it an indispensable reference for students, professionals and educators in the Data Science and AI communities.\n\n# Inspiration\nThis dataset was created out of a commitment to facilitate learning and growth within the Data Science, Machine Learning and AI communities. It started off as an idea during the post **KaggleX Cohort 2** brainstorming and feedback session. It was one of the ideas to create byte-sized learning material to help our KaggleX mentees learn things faster. It aspires to simplify the process of finding, evaluating and selecting the most fitting educational resources.\n\n# Context\nThis dataset was meticulously curated to assist learners in navigating the vast landscape of Data Science, Machine Learning and AI education. It serves as a compass for those aiming to develop their skills and expertise in these rapidly evolving fields.\n\n\n# Sources\nThe dataset compiles data from a curated selection of reputable sources including leading educational platforms such as **Google Developer, Google Cloud Skill Boost, IBM, Fast AI** etc. By drawing from these trusted sources, we ensure that the data is both accurate and pertinent.\n\n# Content\nThe dataset encompasses the following attributes:\n\n- **Course / Learning Material:** The title of the Data Science, Machine Learning or AI course or learning material.\n- **Source:** The provider or institution offering the course.\n- **Course Level:** The proficiency level, ranging from Beginner to Advanced.\n- **Type (Free or Paid):** Indicates whether the course is available for free or requires payment.\n- **Module:** Specific module or section within the course.\n- **Duration:** The estimated time required to complete the module or course.\n- **Module / Sub-module Difficulty Level:** The complexity level of the module or sub-module.\n- **Keywords / Tags / Skills / Interests / Categories:** Relevant keywords, tags or categories associated with the course with a focus on Data Science, Machine Learning and AI.\n- **Links:** Hyperlinks to access the course or learning material directly.\n\n\n# License\nThe **Learning Path Index Dataset** is openly shared under a permissive license, allowing users to utilize the data for educational, analytical and research purposes within the Data Science, Machine Learning and AI domains.",
+    "datasetId": 3766406,
+    "datasetSlug": "learning-path-index-dataset",
+    "hasDatasetSlug": true,
+    "ownerUser": "neomatrix369",
+    "hasOwnerUser": true,
+    "usabilityRating": 1.0,
+    "hasUsabilityRating": true,
+    "totalViews": 369,
+    "totalVotes": 11,
+    "totalDownloads": 41,
+    "title": "Learning Path Index Dataset",
+    "hasTitle": true,
+    "subtitle": "A comprehensive dataset of Data Science, ML and AI learning paths and courses",
+    "hasSubtitle": true,
+    "description": "# Description\nThe **Learning Path Index Dataset** is a comprehensive collection of byte-sized courses and learning materials tailored for individuals eager to delve into the fields of Data Science, Machine Learning and Artificial Intelligence (AI), making it an indispensable reference for students, professionals and educators in the Data Science and AI communities.\n\n# Inspiration\nThis dataset was created out of a commitment to facilitate learning and growth within the Data Science, Machine Learning and AI communities. It started off as an idea during the post **KaggleX Cohort 2** brainstorming and feedback session. It was one of the ideas to create byte-sized learning material to help our KaggleX mentees learn things faster. It aspires to simplify the process of finding, evaluating and selecting the most fitting educational resources.\n\n# Context\nThis dataset was meticulously curated to assist learners in navigating the vast landscape of Data Science, Machine Learning and AI education. It serves as a compass for those aiming to develop their skills and expertise in these rapidly evolving fields.\n\n\n# Sources\nThe dataset compiles data from a curated selection of reputable sources including leading educational platforms such as **Google Developer, Google Cloud Skill Boost, IBM, Fast AI** etc. By drawing from these trusted sources, we ensure that the data is both accurate and pertinent.\n\n# Content\nThe dataset encompasses the following attributes:\n\n- **Course / Learning Material:** The title of the Data Science, Machine Learning or AI course or learning material.\n- **Source:** The provider or institution offering the course.\n- **Course Level:** The proficiency level, ranging from Beginner to Advanced.\n- **Type (Free or Paid):** Indicates whether the course is available for free or requires payment.\n- **Module:** Specific module or section within the course.\n- **Duration:** The estimated time required to complete the module or course.\n- **Module / Sub-module Difficulty Level:** The complexity level of the module or sub-module.\n- **Keywords / Tags / Skills / Interests / Categories:** Relevant keywords, tags or categories associated with the course with a focus on Data Science, Machine Learning and AI.\n- **Links:** Hyperlinks to access the course or learning material directly.\n\n\n# License\nThe **Learning Path Index Dataset** is openly shared under a permissive license, allowing users to utilize the data for educational, analytical and research purposes within the Data Science, Machine Learning and AI domains.",
+    "hasDescription": true,
+    "isPrivate": false,
+    "keywords": [
+      "education",
+      "artificial intelligence",
+      "computer science",
+      "programming",
+      "beginner"
+    ],
+    "licenses": [
+      {
+        "nameNullable": "Apache 2.0",
+        "name": "Apache 2.0",
+        "hasName": true
+      }
+    ],
+    "collaborators": [
+      {
+        "username": "manish5",
+        "role": "reader"
+      },
+      {
+        "username": "mustafa254",
+        "role": "reader"
+      },
+      {
+        "username": "benajii",
+        "role": "reader"
+      },
+      {
+        "username": "zainabikeoluwa",
+        "role": "reader"
+      },
+      {
+        "username": "shebaalkali",
+        "role": "reader"
+      },
+      {
+        "username": "ernestdatascience",
+        "role": "reader"
+      },
+      {
+        "username": "idowuchukwudi",
+        "role": "reader"
+      },
+      {
+        "username": "tobetek",
+        "role": "reader"
+      },
+      {
+        "username": "manishkr1754",
+        "role": "writer"
+      }
+    ],
+    "data": []
+  },
+  "errorMessage": "",
+  "hasErrorMessage": false
+}
