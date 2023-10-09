@@ -6,6 +6,10 @@ A repo with data files, assets and code supporting and powering the Learning Pat
 
 The Learning Path Index is a dynamic and versatile repository designed to empower learners in the fields of Data Science and Machine Learning. It offers a curated collection of byte-sized courses and learning materials, meticulously organized and tagged to facilitate effortless discovery. Whether you're a novice or a seasoned practitioner, the Learning Path Index is your gateway to knowledge, tailored to your interests and needs.
 
+## Important Links
+
+- [Kaggle-Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset/data)
+
 ## Key Features
 
 ### 1. Comprehensive Collection
