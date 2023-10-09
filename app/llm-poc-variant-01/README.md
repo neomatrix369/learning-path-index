@@ -25,12 +25,14 @@ _Please share your resources on either or both of the Embeddings and Chat models
 
 ## Setup
 
-Set up a virtual environment (optional):
+Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
 ```shell
 python3 -m venv .venv
 source .venv/bin/activate
 ```
+
+Please note there are other options to use as well i.e. Conda, venv, virtualenv, poetry, etc. to isolate your development environments.
 
 Install the Python dependencies:
 
