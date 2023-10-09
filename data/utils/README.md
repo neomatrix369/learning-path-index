@@ -4,16 +4,23 @@ The `get-kaggle-dataset-meta-data.py` python script fetches the metadata for the
 
 ## Pre-requisites
 
-Setup your `.bashrc` or `.zshrc` or Windows environment with the below environment variables:
+- Python 3.10 or higher
+- Docker (to run inside docker containers)
+- Shell-scripting (basic skills)
+- Kaggle
+
+**Steps**
+
+- Setup your `.bashrc` or `.zshrc` or Windows environment with the below environment variables:
 
 ```bash
 export KAGGLE_USERNAME="[your kaggle username]"
 export KAGGLE_KEY="[your kaggle API key]"
 ```
 
-See [How to Obtain a Kaggle API Key](https://christianjmills.com/posts/kaggle-obtain-api-key-tutorial/).
+- See [How to Obtain a Kaggle API Key](https://christianjmills.com/posts/kaggle-obtain-api-key-tutorial/).
 
-Install dependencies by running:
+- Install dependencies by running:
 
 ```bash
 pip install requirements.txt
