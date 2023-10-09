@@ -76,7 +76,114 @@
         "role": "writer"
       }
     ],
-    "data": []
+    "data": [
+          {
+            "path": "Learning Pathway Index.csv",
+            "description": "This file contains information about Data Science, Machine Learning, and AI courses and learning materials.",
+            "schema": {
+              "fields": [
+                {
+                  "name": "Course / Learning Material",
+                  "description": "The title of the course or learning material.",
+                  "type": "string"
+                },
+                {
+                  "name": "Source",
+                  "description": "The provider or institution offering the course.",
+                  "type": "string"
+                },
+                {
+                  "name": "Course Level",
+                  "description": "The proficiency level, ranging from Beginner to Advanced.",
+                  "type": "string"
+                },
+                {
+                  "name": "Type (Free or Paid)",
+                  "description": "Indicates whether the course is available for free or requires payment.",
+                  "type": "string"
+                },
+                {
+                  "name": "Module",
+                  "description": "Specific module or section within the course.",
+                  "type": "string"
+                },
+                {
+                  "name": "Duration",
+                  "description": "The estimated time required to complete the module or course.",
+                  "type": "string"
+                },
+                {
+                  "name": "Module / Sub-module Difficulty Level",
+                  "description": "The complexity level of the module or sub-module.",
+                  "type": "string"
+                },
+                {
+                  "name": "Keywords / Tags / Skills / Interests / Categories",
+                  "description": "Relevant keywords, tags, or categories associated with the course with a focus on Data Science, Machine Learning, and AI.",
+                  "type": "string"
+                },
+                {
+                  "name": "Links",
+                  "description": "Hyperlinks to access the course or learning material directly.",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "path": "Courses and Learning Material.csv",
+            "description": "This file contains information about Data Science, Machine Learning, and AI courses and learning materials.",
+            "schema": {
+              "fields": [
+                {
+                  "name": "Tab name",
+                  "description": "The course code of the course or learning material.",
+                  "type": "string"
+                },
+                {
+                  "name": "Source",
+                  "description": "The provider or institution offering the course.",
+                  "type": "string"
+                },
+                {
+                  "name": "Course Level",
+                  "description": "The proficiency level, ranging from Beginner to Advanced.",
+                  "type": "string"
+                },
+                {
+                  "name": "Duration",
+                  "description": "The estimated time required to complete the module or course.",
+                  "type": "string"
+                },
+                {
+                  "name": "Prerequisites",
+                  "description": "One or more courses that need to be completed before a learner can enroll in or take the current course.",
+                  "type": "string"
+                },
+                {
+                  "name": "Prework",
+                  "description": "Foundational knowledge or skills required for successful engagement with the course material.",
+                  "type": "string"
+                },
+                {
+                  "name": "Course / Learning Material",
+                  "description": "Course Title/Name of the Data Science, Machine Learning, or AI course or learning material.",
+                  "type": "string"
+                },
+                {
+                  "name": "Course / Learning Material Link",
+                  "description": "Hyperlinks to access the course or learning material directly.",
+                  "type": "string"
+                },
+                {
+                  "name": "Type (Free or Paid)",
+                  "description": "Indicates whether the course is available for free or requires payment.",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
   },
   "errorMessage": "",
   "hasErrorMessage": false
