@@ -24,6 +24,8 @@ The Learning Path Index is a dynamic and versatile repository designed to empowe
    - Automatically scrape course information and details from multiple platforms.
    - Data enrichment and augmentation using AI!
 
+## [5. Keyword Extraction with KeyBERT and WordWise-Kaggle Notebook](https://github.com/neomatrix369/learning-path-index/blob/main/app/Keyword%20Extraction%20with%20KeyBERT%20and%20WordWise.ipynb)
+
 ## Potential Innovations
 
 Explore exciting possibilities for enhancing the Learning Path Index:
