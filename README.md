@@ -20,7 +20,7 @@ The Learning Path Index is a dynamic and versatile repository designed to empowe
    - Easy-to-use mechanisms for adding new courses and enhancing existing entries.
    - Contribute your expertise and help refine course definitions for the benefit of the entire community.
 
-### [4. Automated Data/Course Scraping *(WIP)*:](./app/course-scraper)
+### [4. Automated Data/Course Scraping *(WIP)*:](./course-scraper)
    - Automatically scrape course information and details from multiple platforms.
    - Data enrichment and augmentation using AI!
 
