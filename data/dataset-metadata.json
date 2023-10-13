@@ -78,12 +78,12 @@
     ],
     "data": [
           {
-            "path": "Learning Pathway Index.csv",
+            "path": "Learning_Pathway_Index.csv",
             "description": "This file contains information about Data Science, Machine Learning, and AI courses and learning materials.",
             "schema": {
               "fields": [
                 {
-                  "name": "Course / Learning Material",
+                  "name": "Course_Learning_Material",
                   "description": "The title of the course or learning material.",
                   "type": "string"
                 },
@@ -93,12 +93,12 @@
                   "type": "string"
                 },
                 {
-                  "name": "Course Level",
+                  "name": "Course_Level",
                   "description": "The proficiency level, ranging from Beginner to Advanced.",
                   "type": "string"
                 },
                 {
-                  "name": "Type (Free or Paid)",
+                  "name": "Type",
                   "description": "Indicates whether the course is available for free or requires payment.",
                   "type": "string"
                 },
@@ -108,17 +108,12 @@
                   "type": "string"
                 },
                 {
-                  "name": "Duration",
-                  "description": "The estimated time required to complete the module or course.",
-                  "type": "string"
-                },
-                {
-                  "name": "Module / Sub-module Difficulty Level",
+                  "name": "Difficulty_Level",
                   "description": "The complexity level of the module or sub-module.",
                   "type": "string"
                 },
                 {
-                  "name": "Keywords / Tags / Skills / Interests / Categories",
+                  "name": "Keywords",
                   "description": "Relevant keywords, tags, or categories associated with the course with a focus on Data Science, Machine Learning, and AI.",
                   "type": "string"
                 },
@@ -126,17 +121,22 @@
                   "name": "Links",
                   "description": "Hyperlinks to access the course or learning material directly.",
                   "type": "string"
+                },
+                {
+                  "name": "Duration",
+                  "description": "The estimated time required to complete the module or course.",
+                  "type": "float"
                 }
               ]
             }
           },
           {
-            "path": "Courses and Learning Material.csv",
+            "path": "Courses_and_Learning_Material.csv",
             "description": "This file contains information about Data Science, Machine Learning, and AI courses and learning materials.",
             "schema": {
               "fields": [
                 {
-                  "name": "Tab name",
+                  "name": "Tab_Name",
                   "description": "The course code of the course or learning material.",
                   "type": "string"
                 },
@@ -146,7 +146,7 @@
                   "type": "string"
                 },
                 {
-                  "name": "Course Level",
+                  "name": "Course_Level",
                   "description": "The proficiency level, ranging from Beginner to Advanced.",
                   "type": "string"
                 },
@@ -166,17 +166,17 @@
                   "type": "string"
                 },
                 {
-                  "name": "Course / Learning Material",
+                  "name": "Course_Learning_Material",
                   "description": "Course Title/Name of the Data Science, Machine Learning, or AI course or learning material.",
                   "type": "string"
                 },
                 {
-                  "name": "Course / Learning Material Link",
+                  "name": "Course_Learning_Material_Link",
                   "description": "Hyperlinks to access the course or learning material directly.",
                   "type": "string"
                 },
                 {
-                  "name": "Type (Free or Paid)",
+                  "name": "Type",
                   "description": "Indicates whether the course is available for free or requires payment.",
                   "type": "string"
                 }
