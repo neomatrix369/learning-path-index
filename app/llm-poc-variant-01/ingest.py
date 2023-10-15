@@ -4,6 +4,7 @@ import glob
 from typing import List
 from multiprocessing import Pool
 from tqdm import tqdm
+import time
 import argparse
 
 from langchain.document_loaders import (
@@ -55,20 +56,23 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
 
 def process_documents(source_documents: str,
                       chunk_size: int,
-                      chunks_overlap: int,
+                      chunk_overlap: int,
                       ignored_files: List[str] = []) -> List[Document]:
     """
     Load documents and split in chunks
     """
+    start_time = time.time()
     print(f"Loading documents from {source_documents}")
     documents = load_documents(source_documents, ignored_files)
     if not documents:
         print("No new documents to load")
         exit(0)
     print(f"Loaded {len(documents)} new documents from {source_documents}")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunks_overlap=chunks_overlap)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     texts = text_splitter.split_documents(documents)
     print(f"Split into {len(texts)} chunks of text (max. {chunk_size} tokens each)")
+    end_time = time.time()
+    print(f"Loading documents took about {end_time - start_time} seconds to complete.")
     return texts
 
 def does_vectorstore_exist(persist_directory: str) -> bool:
@@ -104,7 +108,7 @@ def parse_arguments():
     parser.add_argument("--target-source-chunks", "-C", action='store', default=500,
                         help='Use this flag to specify the name chunk size to use to chunk source data.')
     
-    parser.add_argument("--chunks-overlap", "-O", action='store', default=50,
+    parser.add_argument("--chunk-overlap", "-O", action='store', default=50,
                         help='Use this flag to specify the name chunk overlap value to use to chunk source data.')
 
     return parser.parse_args()
@@ -113,12 +117,18 @@ def parse_arguments():
 def main():
     args = parse_arguments()
 
+    start_time = time.time()
     # Create embeddings
+    print('\nCreating/downloading HF embeddings started...')
     embeddings = HuggingFaceEmbeddings(model_name=args.embeddings_model_name)
+    end_time = time.time()
+    print(f"Creating/downloading HF embeddings completed! It took about {end_time - start_time} seconds to complete.")
 
+    start_time = time.time()
+    print('\nStarted with ingestion process, to create vector database...')
     if does_vectorstore_exist(args.persist_directory):
         # Update and store locally vectorstore
-        print(f"Appending to existing vectorstore at {args.persist_directory}")
+        print(f"-- Appending to existing vectorstore at {args.persist_directory}")
         vector_db = Chroma(
             persist_directory=args.persist_directory, 
             embedding_function=embeddings, 
@@ -128,25 +138,28 @@ def main():
         texts = process_documents(
             args.source_documents,
             args.target_source_chunks,
-            args.chunks_overlap,
+            args.chunk_overlap,
             [metadata['source'] for metadata in collection['metadatas']]
         )
-        print(f"Creating embeddings. May take some minutes...")
+        print(f"-- Creating embeddings. May take some minutes...")
         vector_db.add_documents(texts)
     else:
         # Create and store locally vectorstore
-        print("Creating new vectorstore")
+        print("-- Creating new vectorstore")
         texts = process_documents(args.source_documents,
                                   args.target_source_chunks,
-                                  args.chunks_overlap)
-        print(f"Creating embeddings. May take some minutes...")
+                                  args.chunk_overlap)
+        print(f"-- Creating embeddings. May take some minutes...")
         vector_db = Chroma.from_documents(texts, embeddings, 
                                           persist_directory=args.persist_directory, 
                                           client_settings=CHROMA_SETTINGS)
     vector_db.persist()
     vector_db = None
+    end_time = time.time()
 
-    print(f"Ingestion complete! You can now run lpiGPT.py to query your documents")
+    print(f"Ingestion complete! It took about {end_time - start_time} seconds to complete.")
+    print(f"\nYou can now run lpiGPT.py to query your documents")
+    
 
 
 if __name__ == "__main__":
