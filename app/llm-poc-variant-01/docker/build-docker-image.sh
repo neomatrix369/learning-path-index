@@ -22,7 +22,7 @@ echo "Building image ${FULL_DOCKER_TAG_NAME}"; echo ""
 WORKDIR="/home/"
 cleanup
 
-# cp ../requirements.txt .
+cp ../requirements.txt .
 set -x
 time docker build                              \
                 --build-arg WORKDIR=${WORKDIR} \

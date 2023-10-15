@@ -2,3 +2,4 @@ langchain==0.0.261
 chromadb==0.3.26
 joblib
 tqdm==4.65.0
+sentence_transformers
