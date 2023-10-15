@@ -95,7 +95,7 @@ Ingestion complete! You can now run lpiGPT.py to query your documents
 
 ```bash
 usage: ingest.py [-h] [--embeddings-model-name EMBEDDINGS_MODEL_NAME] [--source-documents SOURCE_DOCUMENTS] [--persist-directory PERSIST_DIRECTORY]
-                 [--target-source-chunks TARGET_SOURCE_CHUNKS] [--chunks-overlap CHUNKS_OVERLAP]
+                 [--target-source-chunks TARGET_SOURCE_CHUNKS] [--chunk-overlap CHUNK_OVERLAP]
 
 ingest: ingest: process one or more documents (text) in order to create embeddings (using the Embeddings models) from them, and make them ready to be used with LLMs when a question is asked to the InstructGPT or Chat Model.
 
@@ -111,7 +111,7 @@ optional arguments:
                         Use this flag to specify the name of the vector database, this will be a folder on the local machine.
   --target-source-chunks TARGET_SOURCE_CHUNKS, -C TARGET_SOURCE_CHUNKS
                         Use this flag to specify the name chunk size to use to chunk source data.
-  --chunks-overlap CHUNKS_OVERLAP, -O CHUNKS_OVERLAP
+  --chunk-overlap CHUNK_OVERLAP, -O CHUNK_OVERLAP
                         Use this flag to specify the name chunk overlap value to use to chunk source data.
 ```
 
