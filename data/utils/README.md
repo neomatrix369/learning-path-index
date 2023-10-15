@@ -18,7 +18,8 @@ export KAGGLE_USERNAME="[your kaggle username]"
 export KAGGLE_KEY="[your kaggle API key]"
 ```
 
-- See [How to Obtain a Kaggle API Key](https://christianjmills.com/posts/kaggle-obtain-api-key-tutorial/).
+- See [Kaggle API Docs](https://www.kaggle.com/docs/api) the lastest docs, but for specific queries like 
+[How to Obtain a Kaggle API Key](https://christianjmills.com/posts/kaggle-obtain-api-key-tutorial/#generate-your-kaggle-api-key), [Christian Mill's Kaggle Docs](https://christianjmills.com/posts/kaggle-obtain-api-key-tutorial/) are also useful.
 
 - Install dependencies by running:
 
