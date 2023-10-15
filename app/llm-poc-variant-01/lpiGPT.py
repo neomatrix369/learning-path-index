@@ -5,6 +5,7 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.vectorstores import Chroma
 from langchain.llms import Ollama
 from langchain.prompts import PromptTemplate
+import torch
 
 import argparse
 import time
@@ -14,14 +15,17 @@ from constants import CHROMA_SETTINGS
 
 def main():
 
+    IS_GPU_AVAILABLE = torch.cuda.is_available()
+    print(f'~~~ GPU is available (CUDA-DNN Enabled: {torch.backends.cudnn.enabled}) ~~~') if IS_GPU_AVAILABLE else print('~~~ GPU is NOT available, falling back to CPU ~~~')
+
+
     # https://smith.langchain.com/hub/rlm/rag-prompt-mistral
     #                          or
     # https://smith.langchain.com/hub/rlm/rag-prompt-llama
     prompt_template = \
     """
         [INST]
-        <<SYS>> You are an assistant for question-answering tasks from the Learning Path Index. 
-        If you don't know the answer, just say that you don't know, don't try to make up an answer. 
+        <<SYS>> You are an assistant for question-answering tasks using the Learning Path Index. 
         Show the results in a table or tabular form, and the results must contain a link for each line of the courses, modules or sub-modules returned.
         <</SYS>> 
         Context: {context} 
