@@ -14,13 +14,19 @@ from constants import CHROMA_SETTINGS
 
 def main():
 
+    # https://smith.langchain.com/hub/rlm/rag-prompt-mistral
+    #                          or
+    # https://smith.langchain.com/hub/rlm/rag-prompt-llama
     prompt_template = \
     """
-        Use the following template to answer the question at the end, from the Learning Path Index csv file.
-        If you don't know the answer, just say that you don't know, don't try to make up an answer.
-        Display the results in a table, results must contain a link for each line of the result.
-        {context}
-        Question: {question}
+        [INST]
+        <<SYS>> You are an assistant for question-answering tasks from the Learning Path Index. 
+        If you don't know the answer, just say that you don't know, don't try to make up an answer. 
+        Show the results in a table or tabular form, and the results must contain a link for each line of the courses, modules or sub-modules returned.
+        <</SYS>> 
+        Context: {context} 
+        Question: {question} 
+        Answer: [/INST]
     """
     PROMPT = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain_type_kwargs = {"prompt": PROMPT}
@@ -42,10 +48,12 @@ def main():
 
     llm = Ollama(model=args.chat_model, callbacks=callbacks)
 
-    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff",
-                                     retriever=retriever,
-                                     return_source_documents=not args.hide_source,
-                                     chain_type_kwargs=chain_type_kwargs
+    qa = RetrievalQA.from_chain_type(
+        llm=llm,
+        chain_type="stuff",
+        retriever=retriever,
+        return_source_documents=not args.hide_source,
+        chain_type_kwargs=chain_type_kwargs
     )
 
     end = time.time()
@@ -62,8 +70,8 @@ def main():
         # Get the answer from the chain
         start = time.time()
         print(f"\nStart time: {datetime.utcfromtimestamp(start).strftime('%Y-%m-%d %H:%M:%S')}")
-        res = qa(query)
-        answer, docs = res['result'], [] if args.hide_source else res['source_documents']
+        answer = qa({"query": query})
+        answer, docs = answer['result'], [] if args.hide_source else answer['source_documents']
         end = time.time()
 
         # Print the result
@@ -74,10 +82,10 @@ def main():
         print(answer)
 
 
-        # Print the relevant sources used for the answer
-        for document in docs:
-            print("\n> " + document.metadata["source"] + ":")
-            print(document.page_content)
+        # # Print the relevant sources used for the answer
+        # for document in docs:
+        #     print("\n> " + document.metadata["source"] + ":")
+        #     print(document.page_content)
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='lpiGPT: Ask questions to your documents without an internet connection, '
