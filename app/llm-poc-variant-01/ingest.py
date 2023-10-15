@@ -4,6 +4,7 @@ import glob
 from typing import List
 from multiprocessing import Pool
 from tqdm import tqdm
+import argparse
 
 from langchain.document_loaders import (
     CSVLoader
@@ -14,14 +15,6 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.docstore.document import Document
 from constants import CHROMA_SETTINGS
-
-
-# Load environment variables
-persist_directory = os.environ.get('PERSIST_DIRECTORY', 'vector_db')
-source_directory = os.environ.get('SOURCE_DIRECTORY', 'source_documents')
-embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME', 'all-MiniLM-L6-v2')
-chunk_size = 500
-chunk_overlap = 50
 
 
 # Map file extensions to document loaders and their arguments
@@ -60,7 +53,10 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
 
     return results
 
-def process_documents(ignored_files: List[str] = []) -> List[Document]:
+def process_documents(source_directory: str,
+                      chunk_size: int,
+                      chunk_overlap: int,
+                      ignored_files: List[str] = []) -> List[Document]:
     """
     Load documents and split in chunks
     """
@@ -88,24 +84,62 @@ def does_vectorstore_exist(persist_directory: str) -> bool:
                 return True
     return False
 
-def main():
-    # Create embeddings
-    embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
 
-    if does_vectorstore_exist(persist_directory):
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='ingest: process one or more documents (text) in order to create embeddings '
+                                                 'from them, and make them ready to be used with LLMs.')
+    # For embeddings model, the example uses a sentence-transformers model
+    # https://www.sbert.net/docs/pretrained_models.html 
+    # "The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster 
+    # and still offers good quality."
+    parser.add_argument("--embeddings-model-name", "-EM", action='store', default="all-MiniLM-L6-v2",
+                        help='Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model when running the lpiGPT.py app.')
+
+    parser.add_argument("--persist-directory", "-P", action='store', default="vector_db",
+                        help='Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.')
+
+    parser.add_argument("--target-source-chunks", "-C", action='store', default=500,
+                        help='Use this flag to specify the name chunk size to use to chunk source data.')
+    
+    parser.add_argument("--chunks-overlap", "-O", action='store', default=50,
+                        help='Use this flag to specify the name chunk overlap value to use to chunk source data.')
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_arguments()
+
+    # Create embeddings
+    embeddings = HuggingFaceEmbeddings(model_name=args.embeddings_model_name)
+
+    if does_vectorstore_exist(args.persist_directory):
         # Update and store locally vectorstore
-        print(f"Appending to existing vectorstore at {persist_directory}")
-        vector_db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, client_settings=CHROMA_SETTINGS)
+        print(f"Appending to existing vectorstore at {args.persist_directory}")
+        vector_db = Chroma(
+            persist_directory=args.persist_directory, 
+            embedding_function=embeddings, 
+            client_settings=CHROMA_SETTINGS
+        )
         collection = vector_db.get()
-        texts = process_documents([metadata['source'] for metadata in collection['metadatas']])
+        texts = process_documents(
+            args.source_directory,
+            args.target_source_chunks,
+            args.chunk_overlap,
+            [metadata['source'] for metadata in collection['metadatas']]
+        )
         print(f"Creating embeddings. May take some minutes...")
         vector_db.add_documents(texts)
     else:
         # Create and store locally vectorstore
         print("Creating new vectorstore")
-        texts = process_documents()
+        texts = process_documents(args.source_directory, 
+                                  args.target_source_chunks,
+                                  args.chunk_overlap)
         print(f"Creating embeddings. May take some minutes...")
-        vector_db = Chroma.from_documents(texts, embeddings, persist_directory=persist_directory, client_settings=CHROMA_SETTINGS)
+        vector_db = Chroma.from_documents(texts, embeddings, 
+                                          persist_directory=args.persist_directory, 
+                                          client_settings=CHROMA_SETTINGS)
     vector_db.persist()
     vector_db = None
 

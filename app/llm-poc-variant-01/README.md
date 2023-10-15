@@ -93,6 +93,26 @@ Creating embeddings. May take some minutes...
 Ingestion complete! You can now run lpiGPT.py to query your documents
 ```
 
+```bash
+> python ingest.py --help
+usage: ingest.py [-h] [--embeddings-model-name EMBEDDINGS_MODEL_NAME] [--persist-directory PERSIST_DIRECTORY] [--target-source-chunks TARGET_SOURCE_CHUNKS]
+                 [--chunks-overlap CHUNKS_OVERLAP]
+
+ingest: process one or more documents (text) in order to create embeddings from them, and make them ready to be used with LLMs.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --embeddings-model-name EMBEDDINGS_MODEL_NAME, -EM EMBEDDINGS_MODEL_NAME
+                        Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model
+                        when running the lpiGPT.py app.
+  --persist-directory PERSIST_DIRECTORY, -P PERSIST_DIRECTORY
+                        Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.
+  --target-source-chunks TARGET_SOURCE_CHUNKS, -C TARGET_SOURCE_CHUNKS
+                        Use this flag to specify the name chunk size to use to chunk source data.
+  --chunks-overlap CHUNKS_OVERLAP, -O CHUNKS_OVERLAP
+                        Use this flag to specify the name chunk overlap value to use to chunk source data.
+```
+
 ### Ask questions
 
 #### via native shell CLI
@@ -122,10 +142,35 @@ Note: The results will be displayed in a table format with columns for Course Na
 .
 .
 .
-
 ```
 
 To exit the GPT prompt, press Ctrl-C or Ctrl-D and it will return to the Linux/Command-prompt.
+
+
+```bash                                                             
+> python lpiGPT.py --help
+usage: lpiGPT.py [-h] [--chat-model CHAT_MODEL] [--embeddings-model-name EMBEDDINGS_MODEL_NAME] [--persist-directory PERSIST_DIRECTORY]
+                 [--target-source-chunks TARGET_SOURCE_CHUNKS] [--hide-source] [--mute-stream]
+
+lpiGPT: Ask questions to your documents without an internet connection, using the power of LLMs.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --chat-model CHAT_MODEL, -CM CHAT_MODEL
+                        Use this flag to set the InstructGPT or Chat model name, see https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or
+                        https://ollama.ai/library for more names.
+  --embeddings-model-name EMBEDDINGS_MODEL_NAME, -EM EMBEDDINGS_MODEL_NAME
+                        Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model as
+                        used for ingesting the documents (ingest.py)
+  --persist-directory PERSIST_DIRECTORY, -P PERSIST_DIRECTORY
+                        Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.
+  --target-source-chunks TARGET_SOURCE_CHUNKS, -C TARGET_SOURCE_CHUNKS
+                        Use this flag to specify the name chunk size to use to chunk source data.
+  --hide-source, -S     Use this flag to disable printing of source documents used for answers.
+  --mute-stream, -M     Use this flag to disable the streaming StdOut callback for LLMs.
+
+```
+
 
 ### Known issues
 
@@ -163,7 +208,7 @@ in there, type the same commands as in the **via native shell CLI** sections of 
 
 ```
 ollama pull llama2:13b
-MODEL=llama2:13b python lpiGPT.py
+python lpiGPT.py --chat-model=llama2:13b
 ```
 
 ## Adding more files
