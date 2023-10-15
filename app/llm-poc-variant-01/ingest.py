@@ -53,19 +53,19 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
 
     return results
 
-def process_documents(source_directory: str,
+def process_documents(source_documents: str,
                       chunk_size: int,
                       chunks_overlap: int,
                       ignored_files: List[str] = []) -> List[Document]:
     """
     Load documents and split in chunks
     """
-    print(f"Loading documents from {source_directory}")
-    documents = load_documents(source_directory, ignored_files)
+    print(f"Loading documents from {source_documents}")
+    documents = load_documents(source_documents, ignored_files)
     if not documents:
         print("No new documents to load")
         exit(0)
-    print(f"Loaded {len(documents)} new documents from {source_directory}")
+    print(f"Loaded {len(documents)} new documents from {source_documents}")
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunks_overlap=chunks_overlap)
     texts = text_splitter.split_documents(documents)
     print(f"Split into {len(texts)} chunks of text (max. {chunk_size} tokens each)")
@@ -95,8 +95,8 @@ def parse_arguments():
     parser.add_argument("--embeddings-model-name", "-EM", action='store', default="all-MiniLM-L6-v2",
                         help='Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model when running the lpiGPT.py app.')
 
-    parser.add_argument("--source-directory", "-S", action='store', default="source_directory",
-                        help='Use this flag to specify the name of the source folder where all the documents are stored (for ingestion purposes) on the local machine.')
+    parser.add_argument("--source-documents", "-S", action='store', default="source_documents",
+                        help='Use this flag to specify the name of the folder where all the (source/input) documents are stored (for ingestion purposes) on the local machine. The documents are of the type `.csv`.')
 
     parser.add_argument("--persist-directory", "-P", action='store', default="vector_db",
                         help='Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.')
@@ -126,7 +126,7 @@ def main():
         )
         collection = vector_db.get()
         texts = process_documents(
-            args.source_directory,
+            args.source_documents,
             args.target_source_chunks,
             args.chunks_overlap,
             [metadata['source'] for metadata in collection['metadatas']]
@@ -136,7 +136,7 @@ def main():
     else:
         # Create and store locally vectorstore
         print("Creating new vectorstore")
-        texts = process_documents(args.source_directory, 
+        texts = process_documents(args.source_documents,
                                   args.target_source_chunks,
                                   args.chunks_overlap)
         print(f"Creating embeddings. May take some minutes...")
