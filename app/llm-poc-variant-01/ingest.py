@@ -55,7 +55,7 @@ def load_documents(source_dir: str, ignored_files: List[str] = []) -> List[Docum
 
 def process_documents(source_directory: str,
                       chunk_size: int,
-                      chunk_overlap: int,
+                      chunks_overlap: int,
                       ignored_files: List[str] = []) -> List[Document]:
     """
     Load documents and split in chunks
@@ -66,7 +66,7 @@ def process_documents(source_directory: str,
         print("No new documents to load")
         exit(0)
     print(f"Loaded {len(documents)} new documents from {source_directory}")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunks_overlap=chunks_overlap)
     texts = text_splitter.split_documents(documents)
     print(f"Split into {len(texts)} chunks of text (max. {chunk_size} tokens each)")
     return texts
@@ -94,6 +94,9 @@ def parse_arguments():
     # and still offers good quality."
     parser.add_argument("--embeddings-model-name", "-EM", action='store', default="all-MiniLM-L6-v2",
                         help='Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model when running the lpiGPT.py app.')
+
+    parser.add_argument("--source-directory", "-S", action='store', default="source_directory",
+                        help='Use this flag to specify the name of the source folder where all the documents are stored (for ingestion purposes) on the local machine.')
 
     parser.add_argument("--persist-directory", "-P", action='store', default="vector_db",
                         help='Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.')
@@ -125,7 +128,7 @@ def main():
         texts = process_documents(
             args.source_directory,
             args.target_source_chunks,
-            args.chunk_overlap,
+            args.chunks_overlap,
             [metadata['source'] for metadata in collection['metadatas']]
         )
         print(f"Creating embeddings. May take some minutes...")
@@ -135,7 +138,7 @@ def main():
         print("Creating new vectorstore")
         texts = process_documents(args.source_directory, 
                                   args.target_source_chunks,
-                                  args.chunk_overlap)
+                                  args.chunks_overlap)
         print(f"Creating embeddings. May take some minutes...")
         vector_db = Chroma.from_documents(texts, embeddings, 
                                           persist_directory=args.persist_directory, 
