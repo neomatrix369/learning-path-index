@@ -113,7 +113,7 @@
                   "type": "string"
                 },
                 {
-                  "name": "Keywords",
+                  "name": "Keywords_Tags_Skills_Interests_Categories",
                   "description": "Relevant keywords, tags, or categories associated with the course with a focus on Data Science, Machine Learning, and AI.",
                   "type": "string"
                 },
