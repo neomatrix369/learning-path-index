@@ -86,8 +86,8 @@ def does_vectorstore_exist(persist_directory: str) -> bool:
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='ingest: process one or more documents (text) in order to create embeddings '
-                                                 'from them, and make them ready to be used with LLMs.')
+    parser = argparse.ArgumentParser(description='ingest: process one or more documents (text) in order to create embeddings (using the Embeddings models)'
+                                                 'from them, and make them ready to be used with LLMs when a question is asked to the InstructGPT or Chat Model.')
     # For embeddings model, the example uses a sentence-transformers model
     # https://www.sbert.net/docs/pretrained_models.html 
     # "The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster 
@@ -96,10 +96,10 @@ def parse_arguments():
                         help='Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model when running the lpiGPT.py app.')
 
     parser.add_argument("--source-documents", "-S", action='store', default="source_documents",
-                        help='Use this flag to specify the name of the folder where all the (source/input) documents are stored (for ingestion purposes) on the local machine. The documents are of the type `.csv`.')
+                        help='Use this flag to specify the name of the folder where all the (source/input) documents are stored for ingestion purposes, on the local machine. The documents contained in them are of the type `.csv`.')
 
     parser.add_argument("--persist-directory", "-P", action='store', default="vector_db",
-                        help='Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.')
+                        help='Use this flag to specify the name of the vector database, this will be a folder on the local machine.')
 
     parser.add_argument("--target-source-chunks", "-C", action='store', default=500,
                         help='Use this flag to specify the name chunk size to use to chunk source data.')

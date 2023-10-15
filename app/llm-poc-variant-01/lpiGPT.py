@@ -81,7 +81,7 @@ def main():
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='lpiGPT: Ask questions to your documents without an internet connection, '
-                                                 'using the power of LLMs.')
+                                                 'using the power of LLMs (the InstructGPT or Chat model).')
     # https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or https://ollama.ai/library
     parser.add_argument("--chat-model", "-CM", action='store', default="llama2-uncensored",
                         help='Use this flag to set the InstructGPT or Chat model name, see https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or https://ollama.ai/library for more names.')
@@ -93,7 +93,7 @@ def parse_arguments():
                         help='Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model as used for ingesting the documents (ingest.py)')
 
     parser.add_argument("--persist-directory", "-P", action='store', default="vector_db",
-                        help='Use this flag to specify the name of the vector database i.e. vector_db - this will be a folder on the local machine.')
+                        help='Use this flag to specify the name of the vector database, this will be a folder on the local machine.')
 
     parser.add_argument("--target-source-chunks", "-C", action='store', default=500,
                         help='Use this flag to specify the name chunk size to use to chunk source data.')
