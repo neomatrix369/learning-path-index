@@ -13,10 +13,12 @@ WORKDIR="/home/"
 LOCAL_MODEL_FOLDER="$(pwd)/../"
 MODEL_VOLUME_SHARED="--volume ${LOCAL_MODEL_FOLDER}:${WORKDIR}"
 OLLAMA_VOLUME_SHARED="--volume /usr/bin/ollama:/usr/bin/ollama"
+HF_CACHE_SHARED="--volume ${LOCAL_MODEL_FOLDER}/.cache:/root/.cache"
 
 set -x
 time docker run --rm  -it --network="host" \
                 --workdir "${WORKDIR}"     \
+                ${HF_CACHE_SHARED}         \
                 ${MODEL_VOLUME_SHARED}     \
                 ${OLLAMA_VOLUME_SHARED}    \
                 "${FULL_DOCKER_TAG_NAME}"
