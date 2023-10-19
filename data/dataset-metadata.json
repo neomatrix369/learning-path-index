@@ -83,6 +83,11 @@
             "schema": {
               "fields": [
                 {
+                  "name": "Module_Code",
+                  "description": "The course code of the course or learning material.",
+                  "type": "string"
+                },                
+                {
                   "name": "Course_Learning_Material",
                   "description": "The title of the course or learning material.",
                   "type": "string"
@@ -98,7 +103,7 @@
                   "type": "string"
                 },
                 {
-                  "name": "Type",
+                  "name": "Type_Free_Paid",
                   "description": "Indicates whether the course is available for free or requires payment.",
                   "type": "string"
                 },
@@ -107,6 +112,11 @@
                   "description": "Specific module or section within the course.",
                   "type": "string"
                 },
+                {
+                  "name": "Duration",
+                  "description": "The estimated time required to complete the module or course.",
+                  "type": "float"
+                },                
                 {
                   "name": "Difficulty_Level",
                   "description": "The complexity level of the module or sub-module.",
@@ -121,11 +131,6 @@
                   "name": "Links",
                   "description": "Hyperlinks to access the course or learning material directly.",
                   "type": "string"
-                },
-                {
-                  "name": "Duration",
-                  "description": "The estimated time required to complete the module or course.",
-                  "type": "float"
                 }
               ]
             }
@@ -136,7 +141,7 @@
             "schema": {
               "fields": [
                 {
-                  "name": "Tab_Name",
+                  "name": "Module_Code",
                   "description": "The course code of the course or learning material.",
                   "type": "string"
                 },
@@ -176,7 +181,7 @@
                   "type": "string"
                 },
                 {
-                  "name": "Type",
+                  "name": "Type_Free_Paid",
                   "description": "Indicates whether the course is available for free or requires payment.",
                   "type": "string"
                 }
