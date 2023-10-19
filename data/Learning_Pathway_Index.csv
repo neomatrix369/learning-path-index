@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-Course_Learning_Material,Source,Course_Level,Type,Module,Difficulty_Level,Keywords,Links,Duration_in_minutes
+Course_Learning_Material,Source,Course_Level,Type,Module,Difficulty_Level,Keywords_Tags_Skills_Interests_Categories,Links,Duration_in_minutes
 Introduction to Machine Learning,Google Developers,Beginner,Free,Introduction to Machine Learning,Easy,machine learning,https://developers.google.com/machine-learning/intro-to-ml,20
 Introduction to Machine Learning,Google Developers,Beginner,Free,What is Machine Learning,Easy,machine learning,https://developers.google.com/machine-learning/intro-to-ml/what-is-ml,20
 Introduction to Machine Learning,Google Developers,Beginner,Free,Supervised Learning,Medium,supervised learning,https://developers.google.com/machine-learning/intro-to-ml/supervised,20
@@ -2794,4 +2793,3 @@ CLMML11,Machine Learning Engineer Learning Path,Google Cloud Skill Boost,Advance
 CLMML11,Machine Learning Engineer Learning Path,Google Cloud Skill Boost,Advanced,Free during mentorship period,Build and Deploy Machine Learning Solutions on Vertex AI: Deploy a BigQuery ML Customer Churn Classifier to Vertex AI for Online Predictions,90.0 minutes,Hard,"Machine Learning,Deployment,Cloud, Vertex AI, Lab, AutoML, Challenge, Pipeline, Deployment",https://www.cloudskillsboost.google/course_sessions/5120932/labs/407995
 CLMML11,Machine Learning Engineer Learning Path,Google Cloud Skill Boost,Advanced,Free during mentorship period,Build and Deploy Machine Learning Solutions on Vertex AI: Vertex Pipelines: Qwik Start,90.0 minutes,Hard,"Machine Learning,Deployment,Cloud, Vertex AI, Lab, AutoML, Challenge, Pipeline, Deployment",https://www.cloudskillsboost.google/course_sessions/5120932/labs/407996
 CLMML11,Machine Learning Engineer Learning Path,Google Cloud Skill Boost,Advanced,Free during mentorship period,Build and Deploy Machine Learning Solutions on Vertex AI: Build and Deploy Machine Learning Solutions with Vertex AI: Challenge Lab,120.0 minutes,Hard,"Machine Learning,Deployment,Cloud, Vertex AI, Lab, AutoML, Challenge, Pipeline, Deployment",Link Not Available
->>>>>>> b751699 (Updated information as per PR 15,16,17)
