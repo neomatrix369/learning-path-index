@@ -1,4 +1,4 @@
-Tab name,Source,Course Level,Duration,Prerequisites,Prework,Course / Learning material,Course / Learning material Link,Type (Free or Paid)
+Tab_Name,Source,Course_Level,Duration,Prerequisites,Prework,Course_Learning_Material,Course_Learning_Material_Link,Type
 CLMML00,Google Developers,Beginners,70 mins,No,No,Introduction to Machine Learning,https://developers.google.com/machine-learning/intro-to-ml,Free
 CLMML01,Google Developers,Beginners to Intermediate,,"Yes, a handful ",Yes,Machine Learning Crash Course (Foundation),https://developers.google.com/machine-learning/crash-course,Free
 CLMML02,Google Developers,Beginners to Intermediate,45 mins,No,No,Problem Framing (ML related),https://developers.google.com/machine-learning/problem-framing,Free
