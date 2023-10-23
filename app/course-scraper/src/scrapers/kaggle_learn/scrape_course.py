@@ -36,7 +36,7 @@ def get_course_details(url: str) -> dict:
     return r.json()
 
 
-course = KaggleCourse.parse_obj(
+course = KaggleCourse.model_validate(
     get_course_details("https://www.kaggle.com/learn/feature-engineering")
 )
 

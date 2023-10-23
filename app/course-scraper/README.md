@@ -1,6 +1,6 @@
 # Course Scraper Module
 
-The Course Scraper Module is a versatile tool designed to fetch course information and duration from various online learning platforms. It simplifies the process of finding the right resource for your learning needs by providing a unified interface for accessing course details from supported platforms.
+The Course Scraper Module is a versatile tool designed to fetch course information and duration from various online learning platforms. It simplifies the process of extracting course metadata and information from a range of sources using web scraping.
 
 ## Supported Platforms
 

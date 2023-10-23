@@ -22,7 +22,7 @@ class KaggleLesson(BaseModel):
         url: str  # E.g "/code/ryanholbrook/what-is-feature-engineering"
         authorUsername: str
 
-        @validator("url", each_item=True)
+        @validator("url")
         def convert_to_absolute_url(cls, url):
             return convert_relative_url_to_absolute(url, domain=KAGGLE_URL)
 
@@ -34,7 +34,7 @@ class KagglePrerequsite(BaseModel):
     name: str
     trackSlug: str
 
-    @validator("trackSlug", each_item=True)
+    @validator("trackSlug")
     def convert_to_absolute_url(cls, trackSlug):
         return convert_relative_url_to_absolute(trackSlug, domain=KAGGLE_LEARN_URL)
 
@@ -53,7 +53,7 @@ class KaggleCourse(BaseModel):
     prerequisites: Optional[list[KagglePrerequsite]]
     authors: list[KaggleAuthor]
 
-    @validator("trackSlug", each_item=True)
+    @validator("trackSlug")
     def convert_to_absolute_url(cls, trackSlug):
         return convert_relative_url_to_absolute(trackSlug, domain=KAGGLE_LEARN_URL)
 

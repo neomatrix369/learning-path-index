@@ -43,7 +43,7 @@ class AllKaggleCourses(BaseModel):
     tracks: list[KaggleCourse]
 
 
-page = AllKaggleCourses.parse_obj(
+page = AllKaggleCourses.model_validate(
     get_page_details("https://www.kaggle.com/learn/feature-engineering")
 )
 

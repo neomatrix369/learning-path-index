@@ -21,11 +21,11 @@ with open(DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv")) as f:
 
 csvreader = csv.DictReader(course_meta)
 for course in csvreader:
-    # TODO: Support scraping GCB Labs
+    # TODO: Support scraping CloudBoost Labs
     if "labs" in course["title"].lower():
         continue
     r = requests.get(course["link"])
-    print(str(r.content)[:100])
+    print(r.url)
     html_parser = etree.HTMLParser()
     dom = etree.fromstring(r.content, html_parser)
 
