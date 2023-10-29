@@ -1,6 +1,14 @@
 # Learning Path Index
 A repo with data files, assets and code supporting and powering the Learning Path Index.
 
+Table of content
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Potential Innovations](#potential-innovations)
+- [How to contribute to this initiative?](#how-to-contribute-to-this-initiative)
+- [Important Links](#important-links)
+- [Credits](#credits)
 
 ## Overview
 
@@ -27,9 +35,9 @@ The outcome of this effort was the creation of this _Git repo_ and the KaggleX [
    - Automatically scrape course information and details from multiple platforms.
    - Data enrichment and augmentation using AI!
 
-## [5. Keyword Extraction with KeyBERT and WordWise-Kaggle Notebook](https://github.com/neomatrix369/learning-path-index/blob/main/app/Keyword%20Extraction%20with%20KeyBERT%20and%20WordWise.ipynb)
+### [5. Keyword Extraction with KeyBERT and WordWise-Kaggle Notebook](https://github.com/neomatrix369/learning-path-index/blob/main/app/Keyword%20Extraction%20with%20KeyBERT%20and%20WordWise.ipynb)
 
-## [6. Learning Pathway Index Data Cleaning and Preprocessing](https://www.kaggle.com/code/manishkr1754/lpi-data-cleaning-and-preprocessing/notebook)
+### [6. Learning Pathway Index Data Cleaning and Preprocessing](https://www.kaggle.com/code/manishkr1754/lpi-data-cleaning-and-preprocessing/notebook)
 
 ## Potential Innovations
 
@@ -60,6 +68,15 @@ Explore exciting possibilities for enhancing the Learning Path Index:
 12. **Continuous Improvement**: Brainstorm and implement additional ideas to enhance the tool's utility for both the community and individuals.
 
 Join us in this exciting journey of learning, collaboration, and innovation. Together, we can create a valuable resource for the Data Science and Machine Learning community. Let's embark on the path to knowledge and discovery!
+
+
+## How to contribute to this initiative?
+
+- You can also join us by taking part in the next [KaggleX BIPOC Mentorship program](https://www.kaggle.com/kagglex) (also [see this](https://www.kaggle.com/discussions/general/409607))
+- Keep your eyes open on the **Kaggle Discussions** page and other **KaggleX** social media channels. Or find us on the [Kaggle Discord](https://www.kaggle.com/discussions/general/429933) channel to learn more about the next steps
+- Create notebooks from this data
+- Create supplementary or complementary data for or from this dataset
+- Submit corrections/enhancements or anything else to help improve this dataset so it has a wider use and purpose
 
 ## Important Links
 
