@@ -1,14 +1,21 @@
 # Learning Path Index
-A repo with data files, assets and code supporting and powering the Learning Path Index
+A repo with data files, assets and code supporting and powering the Learning Path Index.
 
+Table of content
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Potential Innovations](#potential-innovations)
+- [How to contribute to this initiative?](#how-to-contribute-to-this-initiative)
+- [Important Links](#important-links)
+- [Credits](#credits)
 
 ## Overview
 
-The Learning Path Index is a dynamic and versatile repository designed to empower learners in the fields of Data Science and Machine Learning. It offers a curated collection of byte-sized courses and learning materials, meticulously organized and tagged to facilitate effortless discovery. Whether you're a novice or a seasoned practitioner, the Learning Path Index is your gateway to knowledge, tailored to your interests and needs.
+The **Learning Path Index** is a dynamic and versatile repository designed to empower learners in the fields of Data Science and Machine Learning. It offers a curated collection of byte-sized courses and learning materials, meticulously organized and tagged to facilitate effortless discovery. Whether you're a novice or a seasoned practitioner, the Learning Path Index is your gateway to knowledge, tailored to your interests and needs.
 
-## Important Links
+The outcome of this effort was the creation of this _Git repo_ and the KaggleX [Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset) by the mentors and mentees of **Cohort 3** [KaggleX BIPOC Mentorship Program](https://www.kaggle.com/kagglex) (between August 2023 and November 2023), see the [Credits](#credits) section for more details.
 
-- [Kaggle-Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset/data)
 
 ## Key Features
 
@@ -28,9 +35,9 @@ The Learning Path Index is a dynamic and versatile repository designed to empowe
    - Automatically scrape course information and details from multiple platforms.
    - Data enrichment and augmentation using AI!
 
-## [5. Keyword Extraction with KeyBERT and WordWise-Kaggle Notebook](https://github.com/neomatrix369/learning-path-index/blob/main/app/Keyword%20Extraction%20with%20KeyBERT%20and%20WordWise.ipynb)
+### [5. Keyword Extraction with KeyBERT and WordWise-Kaggle Notebook](https://github.com/neomatrix369/learning-path-index/blob/main/app/Keyword%20Extraction%20with%20KeyBERT%20and%20WordWise.ipynb)
 
-## [6. Learning Pathway Index Data Cleaning and Preprocessing](https://www.kaggle.com/code/manishkr1754/lpi-data-cleaning-and-preprocessing/notebook)
+### [6. Learning Pathway Index Data Cleaning and Preprocessing](https://www.kaggle.com/code/manishkr1754/lpi-data-cleaning-and-preprocessing/notebook)
 
 ## Potential Innovations
 
@@ -61,3 +68,27 @@ Explore exciting possibilities for enhancing the Learning Path Index:
 12. **Continuous Improvement**: Brainstorm and implement additional ideas to enhance the tool's utility for both the community and individuals.
 
 Join us in this exciting journey of learning, collaboration, and innovation. Together, we can create a valuable resource for the Data Science and Machine Learning community. Let's embark on the path to knowledge and discovery!
+
+
+## How to contribute to this initiative?
+
+- You can also join us by taking part in the next [KaggleX BIPOC Mentorship program](https://www.kaggle.com/kagglex) (also [see this](https://www.kaggle.com/discussions/general/409607))
+- Keep your eyes open on the **Kaggle Discussions** page and other **KaggleX** social media channels. Or find us on the [Kaggle Discord](https://www.kaggle.com/discussions/general/429933) channel to learn more about the next steps
+- Create notebooks from this data
+- Create supplementary or complementary data for or from this dataset
+- Submit corrections/enhancements or anything else to help improve this dataset so it has a wider use and purpose
+
+## Important Links
+
+- [KaggleX BIPOC Mentorship program](https://www.kaggle.com/kagglex) (also [see this](https://www.kaggle.com/discussions/general/409607))
+- KaggleX [Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset)
+- KaggleX [Learning Path Index GitHub Repo](https://github.com/neomatrix369/learning-path-index)
+- [New Official Kaggle Discord Server!](https://www.kaggle.com/discussions/general/429933)
+
+## Credits
+
+Credits for all the work done to create this Git Repo and the KaggleX [Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset/data) goes to these mentors and mentees (in no particular order): [Manish Kumar](https://www.kaggle.com/manishkr1754), [Ben Aji](https://www.kaggle.com/benajii) (_mentor_), [Emmanuel Katchy](https://www.kaggle.com/tobetek), [Ezeogu Ernest](https://www.kaggle.com/tobetek), [Manish](https://www.kaggle.com/manish5), [Mustafa](https://www.kaggle.com/mustafa254), [Nnamdi Idowu-Anifowoshe](https://www.kaggle.com/idowuchukwudi), [Sheba Alkali](https://www.kaggle.com/shebaalkali), [Zainab ikeoluwa](https://www.kaggle.com/zainabikeoluwa), [Wendy Mak](https://www.kaggle.com/wwymak) (_mentor_), [Misirya Hameed](https://www.linkedin.com/in/misiriya-shahul-hameed-b3957875) (_mentor_), [Chukwuebuka Obi](https://www.kaggle.com/chukwuebukaobi), [Victor Umunna](https://www.kaggle.com/victorumunna), [Pui Yueng](https://www.kaggle.com/lorentzyeung), [Afolake Solomon](https://www.kaggle.com/flakkyddon), [Faith Osoro](https://www.kaggle.com/faithosoro), [Chukwudi Idowu](https://www.kaggle.com/chukwudiidowu) and many others who were part of the **Cohort 3** [KaggleX BIPOC Mentorship Program](https://www.kaggle.com/kagglex) (between August 2023 and November 2023).
+
+Our gratitude also goes to our silent supporters of this initiative from organisers to the mentors and mentees whose help and support kept us going.
+
+_**Note:** In case your name or mention is missed out in the above list, then please let us know._
