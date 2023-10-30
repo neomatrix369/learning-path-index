@@ -4,7 +4,7 @@ A standalone GPT app based on [Ollama](https://github.com/jmorganca/ollama) and 
 
 It's simple and runs on the local machine with smaller sized and free LLMs.
 
-> Note: credits to this program goes to the original authors of [privateGPT](https://github.com/jmorganca/ollama/blob/main/examples/privategpt/README.md) from Ivan Martinez who contributed to an example on [jmorganca/ollama](https://github.com/jmorganca/ollama).
+> Note: credits to this program goes to the original authors of [langchain-python-rag-privategpt](https://github.com/jmorganca/ollama/tree/main/examples/langchain-python-rag-privategpt) from Ivan Martinez who contributed to an example on [jmorganca/ollama](https://github.com/jmorganca/ollama).
 
 ## Models
 
