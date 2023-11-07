@@ -39,6 +39,10 @@ The outcome of this effort was the creation of this _Git repo_ and the KaggleX [
 
 ### [6. Learning Pathway Index Data Cleaning and Preprocessing](https://www.kaggle.com/code/manishkr1754/lpi-data-cleaning-and-preprocessing/notebook)
 
+### [7. Contextual Search On Kaggle Learning Path Index](https://github.com/mbhoge/learning-path-index-rag-search/blob/learning-path-index-search-01/app/llm-poc-variant-02/README.md)
+
+
+
 ## Potential Innovations
 
 Explore exciting possibilities for enhancing the Learning Path Index:
