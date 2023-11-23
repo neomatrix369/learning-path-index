@@ -52,6 +52,11 @@ Install [Ollama](https://github.com/jmorganca/ollama) using the below command on
 curl https://ollama.ai/install.sh | sh
 ```
 
+Pull the model you'd like to use:
+
+```shell
+ollama pull llama2-uncensored
+```
 
 Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
@@ -75,7 +80,6 @@ ollama pull llama2-uncensored
 ```
 
 ## Setup
-
 ### Downloading Learning Path Index datasets
 
 ```bash
