@@ -46,6 +46,13 @@ List out the key requirements needed to run the project, such as:
 
 ## Installation
 
+Install [Ollama](https://github.com/jmorganca/ollama) using the below command on the host/local machine:
+
+```bash
+curl https://ollama.ai/install.sh | sh
+```
+
+
 Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
 ```shell
