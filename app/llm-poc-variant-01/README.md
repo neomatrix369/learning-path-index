@@ -25,6 +25,13 @@ _Please share your resources on either or both of the Embeddings and Chat models
 
 ## Setup
 
+Install [Ollama](https://github.com/jmorganca/ollama) using the below command on the host/local machine:
+
+```bash
+curl https://ollama.ai/install.sh | sh
+```
+
+
 Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
 ```shell
