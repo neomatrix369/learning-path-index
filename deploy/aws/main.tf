@@ -2,8 +2,7 @@ resource "aws_instance" "lpi-gpu-vm" {
   ami = "ami-065deacbcaac64cf2" //Ubuntu AMI
   ### https://aws.amazon.com/ec2/instance-types/
   ###### t2.xlarge = CPU based
-  ###### g4dn.xlarge = GPU based
-  instance_type = "g4dn.xlarge"
+  instance_type = "t2.2xlarge"
   ebs_block_device {
     device_name = "/dev/sda1"
     volume_size = 20
@@ -36,8 +35,12 @@ resource "aws_instance" "lpi-gpu-vm" {
       "sudo groupadd -f docker",
       "sudo usermod -aG docker $USER",
       "docker -v || true",
+      "curl https://ollama.ai/install.sh | sh",
+      "ollama pull llama2-uncensored",
       "git clone https://github.com/neomatrix369/learning-path-index",
-      "cd learning-path-index/app/llm-poc-variant-01/docker"
+      "cd learning-path-index/app/llm-poc-variant-01/docker",
+      "mkdir -p source_documents",
+      "curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Learning_Pathway_Index.csv -o 'source_documents/Learning Pathway Index.csv'"
     ]
   }
 }
