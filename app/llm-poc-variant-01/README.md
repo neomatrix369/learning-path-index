@@ -51,9 +51,9 @@ ollama pull llama2-uncensored
 ```
 mkdir -p source_documents
 
-curl https://raw.githubusercontent.com/Niskarsh12/learning-path-index/main/data/Courses%20and%20Learning%20Material.csv -o "source_documents/Courses and Learning Material.csv"
 
-curl https://raw.githubusercontent.com/Niskarsh12/learning-path-index/main/data/Learning%20Pathway%20Index.csv -o "source_documents/Learning Pathway Index.csv"
+curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Learning_Pathway_Index.csv -o "source_documents/Learning Pathway Index.csv"
+curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Courses_and_Learning_Material.csv -o "source_documents/Courses and Learning Material.csv"
 ```
 
 Or you can manually download them from the Kaggle Dataset: Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset).
@@ -63,13 +63,13 @@ Or you can manually download them from the Kaggle Dataset: Learning Path Index D
 #### via native shell CLI
 
 ```shell
-python ingest.py
+python3 ingest.py
 ```
 
 Output should look like this:
 
 ```shell
-root@sai-XPS-15-9560:/home# python ingest.py 
+root@sai-XPS-15-9560:/home# python3 ingest.py 
 Downloading (…)e9125/.gitattributes: 100%|███████████████████████████████████████████████████████████████████| 1.18k/1.18k [00:00<00:00, 2.07MB/s]
 Downloading (…)_Pooling/config.json: 100%|████████████████████████████████████████████████████████████████████████| 190/190 [00:00<00:00, 378kB/s]
 Downloading (…)7e55de9125/README.md: 100%|███████████████████████████████████████████████████████████████████| 10.6k/10.6k [00:00<00:00, 16.2MB/s]
@@ -120,7 +120,7 @@ optional arguments:
 #### via native shell CLI
 
 ```shell
-python lpiGPT.py
+python3 lpiGPT.py
 
 Enter a query: Fetch me all machine learning courses of the advanced level from the Learning Path Index and show me results in a tabular form
 
@@ -150,7 +150,7 @@ To exit the GPT prompt, press Ctrl-C or Ctrl-D and it will return to the Linux/C
 
 
 ```bash                                                             
-> python lpiGPT.py --help
+> python3 lpiGPT.py --help
 usage: lpiGPT.py [-h] [--chat-model CHAT_MODEL] [--embeddings-model-name EMBEDDINGS_MODEL_NAME] [--persist-directory PERSIST_DIRECTORY]
                  [--target-source-chunks TARGET_SOURCE_CHUNKS] [--hide-source] [--mute-stream]
 
@@ -209,7 +209,7 @@ in there, type the same commands as in the **via native shell CLI** sections of 
 
 ```
 ollama pull llama2:13b
-python lpiGPT.py --chat-model=llama2:13b
+python3 lpiGPT.py --chat-model=llama2:13b
 ```
 
 ## Adding more files
