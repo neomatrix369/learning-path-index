@@ -1,26 +1,26 @@
 output "arn" {
   description = "The ARN of the instance"
-  value       = try(aws_instance.lpi-vm.arn, "")
+  value       = try(aws_instance.lpi-gpu-vm.arn, "")
 }
 
 output "public_dns" {
   description = "This public DNS name assigned to the instance"
-  value       = try(aws_instance.lpi-vm.public_dns, "")
+  value       = try(aws_instance.lpi-gpu-vm.public_dns, "")
 }
 
 output "public_ip" {
   description = "This public IP address assigned to the instance"
-  value       = try(aws_instance.lpi-vm.public_ip, "")
+  value       = try(aws_instance.lpi-gpu-vm.public_ip, "")
 }
 
 output "private_dns" {
   description = "This private DNS name assigned to the instance"
-  value       = try(aws_instance.lpi-vm.private_dns, "")
+  value       = try(aws_instance.lpi-gpu-vm.private_dns, "")
 }
 
 output "private_ip" {
   description = "This private IP address assigned to the instance"
-  value       = try(aws_instance.lpi-vm.private_ip, "")
+  value       = try(aws_instance.lpi-gpu-vm.private_ip, "")
 }
 
 
@@ -37,5 +37,5 @@ output "private_ip" {
 
 output "tags_all" {
   description = "A map of tags assigned to the resource"
-  value       = try(aws_instance.lpi-vm.tags_all, "")
+  value       = try(aws_instance.lpi-gpu-vm.tags_all, "")
 }

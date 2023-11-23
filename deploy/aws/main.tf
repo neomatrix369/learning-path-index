@@ -1,21 +1,23 @@
-resource "aws_instance" "lpi-vm" {
+resource "aws_instance" "lpi-gpu-vm" {
   ami = "ami-065deacbcaac64cf2" //Ubuntu AMI
   ### https://aws.amazon.com/ec2/instance-types/
-  instance_type = "t2.xlarge"
+  ###### t2.xlarge = CPU based
+  ###### g4dn.xlarge = GPU based
+  instance_type = "g4dn.xlarge"
   ebs_block_device {
     device_name = "/dev/sda1"
     volume_size = 20
   }
 
   tags = {
-    Name = "LPI Instance (vm)"
+    Name = "LPI Instance (GPU/vm)"
   }
 
   key_name        = aws_key_pair.lpi-key.key_name
   security_groups = ["lpi-sg"]
 
   connection {
-    type        = "ssh"
+    type = "ssh"
     ### Important to set this to the correct user, as for AMI Ubuntu/Linux boxes
     ### the default name is 'ubuntu', and NOT 'ec2-user'
     user        = "ubuntu"
