@@ -1,4 +1,4 @@
-resource "aws_instance" "lpi-gpu-vm" {
+resource "aws_instance" "lpi-cpu-vm" {
   ami = "ami-065deacbcaac64cf2" //Ubuntu AMI
   ### https://aws.amazon.com/ec2/instance-types/
   ###### t2.xlarge = CPU based
@@ -9,7 +9,7 @@ resource "aws_instance" "lpi-gpu-vm" {
   }
 
   tags = {
-    Name = "LPI Instance (GPU/vm)"
+    Name = "LPI Instance (CPU/vm)"
   }
 
   key_name        = aws_key_pair.lpi-key.key_name
@@ -38,7 +38,7 @@ resource "aws_instance" "lpi-gpu-vm" {
       "curl https://ollama.ai/install.sh | sh",
       "ollama pull llama2-uncensored",
       "git clone https://github.com/neomatrix369/learning-path-index",
-      "cd learning-path-index/app/llm-poc-variant-01/docker",
+      "cd learning-path-index/app/llm-poc-variant-01/",
       "mkdir -p source_documents",
       "curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Learning_Pathway_Index.csv -o 'source_documents/Learning Pathway Index.csv'"
     ]
