@@ -36,6 +36,7 @@ resource "aws_instance" "lpi-cpu-vm" {
       "sudo usermod -aG docker $USER",
       "docker -v || true",
       "curl https://ollama.ai/install.sh | sh",
+      "ollama serve",
       "ollama pull llama2-uncensored",
       "echo; ollama list; echo",
       "git clone https://github.com/neomatrix369/learning-path-index",
