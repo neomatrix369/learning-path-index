@@ -59,6 +59,7 @@ time docker build                              \
                 -t ${FULL_DOCKER_TAG_NAME}     \
                 .
 set +x
+rm -f requirements.txt
 
 echo "* Finished building docker image ${FULL_DOCKER_TAG_NAME}"
 
