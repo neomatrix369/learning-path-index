@@ -11,6 +11,13 @@ pinned: false
 
 Check out the deployed demo version at https://huggingface.co/spaces/Entz/llm_5
 
+## Pulling the docker image from repository
+docker run -it -p 7860:7860 --platform=linux/amd64 \
+	-e OPENAI_API_KEY="YOUR_VALUE_HERE" \
+	registry.hf.space/entz-llm-5:latest streamlit run app.py
+
+This docker image requires some secrets to run, don't forget to set the environment values (your "OPENAI_API_KEY" in this case) in your docker command!
+
 This repository is the prototype in A prototype written in Python to illustrate/demonstrate querying a tiny dataset extracted from the Learning Path Index Dataset (see [Kaggle Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset )
 
 The dataset is stored in the folder named chroma, and can be found in the same directory. 
