@@ -22,7 +22,9 @@ HF_CACHE_SHARED="--volume ${LOCAL_MODEL_FOLDER}/.cache:/root/.cache"
 
 set -x
 pullImage
-time docker run --rm  -it --network="host" \
+time docker run --rm -it                   \
+                --platform="linux/amd64"   \
+                --network="host"           \
                 --workdir "${WORKDIR}"     \
                 ${HF_CACHE_SHARED}         \
                 ${MODEL_VOLUME_SHARED}     \
