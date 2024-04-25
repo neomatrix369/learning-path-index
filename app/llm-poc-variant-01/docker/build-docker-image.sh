@@ -57,7 +57,7 @@ set -x
 REQUESTS_CA_BUNDLE="$(ls *.pem || true)"
 time docker build                              \
                 --build-arg WORKDIR=${WORKDIR} \
-				--build-arg REQUESTS_CA_BUNDLE=${REQUESTS_CA_BUNDLE} \
+                --build-arg REQUESTS_CA_BUNDLE=${REQUESTS_CA_BUNDLE} \
                 -t ${FULL_DOCKER_TAG_NAME}     \
                 .
 set +x
