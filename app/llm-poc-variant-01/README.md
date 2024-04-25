@@ -9,12 +9,24 @@ It's simple and runs on the local machine with smaller sized and free LLMs.
 > Note: credits to this program goes to the original authors of [langchain-python-rag-privategpt](https://github.com/jmorganca/ollama/tree/main/examples/langchain-python-rag-privategpt) from Ivan Martinez who contributed to an example on [jmorganca/ollama](https://github.com/jmorganca/ollama).
 
 
-*Table of Contents*
+## Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Setup](#setup)
+   - [Downloading Learning Path Index datasets](#getting-learning-path-index-datasets)
+   - [Ingesting files](#ingesting-files)
+     - [via native shell CLI](#via-native-shell-cli)
 - [Usage](#usage)
+  - [Ask questions](#ask-questions)
+    - [via native shell CLI](#via-native-shell-cli-1)
+    - [via Docker container](#via-docker-container)
+  - [Try a different model](#try-a-different-model)
+  - [Adding more files](#adding-more-files)
+- [Models](#models)
+  - [Embeddings models](#embeddings-models)
+  - [Chat models](#chat-models)
+- [Known issues](#known-issues)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -57,9 +69,9 @@ ollama pull llama2-uncensored
 
 ## Setup
 
-### Getting Learning Path Index datasets
+### Downloading Learning Path Index datasets
 
-```
+```bash
 mkdir -p source_documents
 
 curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Courses_and_Learning_Material.csv -o "source_documents/Courses_and_Learning_Material.csv"
@@ -68,7 +80,6 @@ curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/dat
 ```
 
 Or you can manually download them from the [Kaggle Dataset: Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset).
-
 
 ### Ingesting files
 
@@ -126,6 +137,18 @@ optional arguments:
   --chunk-overlap CHUNK_OVERLAP, -O CHUNK_OVERLAP
                         Use this flag to specify the name chunk overlap value to use to chunk source data.
 ```
+
+#### Known issues
+
+When trying to ingest and also run the GPT app, we can get this error on system with Python 3.10 or older:
+
+```python
+RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
+```
+
+If this occurs then use the Docker container to run your commands, instructions are given below under each sub-section.
+
+[back to ToC](#table-of-contents)
 
 ## Usage
 
@@ -186,17 +209,6 @@ optional arguments:
   --mute-stream, -M     Use this flag to disable the streaming StdOut callback for LLMs.
 ```
 
-
-### Known issues
-
-When trying to ingest and also run the GPT app, we can get this error on system with Python 3.10 or older:
-
-```python
-RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
-```
-
-If this occurs then use the Docker container to run your commands, instructions are given below under each sub-section.
-
 #### via Docker container
 
 You can also setup an isolated environment i.e. inside Docker container and perform the same above operations
@@ -221,9 +233,9 @@ root@[your machine name]:/home#:
 in there, type the same commands as in the **via native shell CLI** sections of [Ingesting files](#ingesting-files) and [Ask questions](#ask-questions) respectively.
 
 
-### Try a different model:
+### Try a different model
 
-```
+```shell
 ollama pull llama2:13b
 python lpiGPT.py --chat-model=llama2:13b
 ```
@@ -237,6 +249,7 @@ The supported extensions are:
 - `.csv`: CSV
 and others, we have trimmed them off from here to keep this example simple and concise.
 
+[back to ToC](#table-of-contents)
 
 ## Models
 
@@ -267,3 +280,5 @@ We are open to any or all of the below from your side in terms of contributions:
 ## License
 
 See [LICENSE](https://github.com/neomatrix369/learning-path-index/blob/main/LICENSE) in the root folder of the project
+
+[back to ToC](#table-of-contents)
