@@ -14,7 +14,7 @@ It's simple and runs on the local machine with smaller sized and free LLMs.
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Setup](#setup)
-   - [Downloading Learning Path Index datasets](#getting-learning-path-index-datasets)
+   - [Downloading Learning Path Index datasets](#downloading-learning-path-index-datasets)
    - [Ingesting files](#ingesting-files)
      - [via native shell CLI](#via-native-shell-cli)
 - [Usage](#usage)
