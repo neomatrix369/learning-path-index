@@ -1,29 +1,50 @@
 # lpiGPT - Learning Path Index GPT
 
+Ever thought you could ask/query a GPT about a course or smaller module of a course and have it find such bits of learning material across multiple sources of courses.
+
 A standalone GPT app based on [Ollama](https://github.com/jmorganca/ollama) and the [Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset).
 
 It's simple and runs on the local machine with smaller sized and free LLMs.
 
 > Note: credits to this program goes to the original authors of [langchain-python-rag-privategpt](https://github.com/jmorganca/ollama/tree/main/examples/langchain-python-rag-privategpt) from Ivan Martinez who contributed to an example on [jmorganca/ollama](https://github.com/jmorganca/ollama).
 
-## Models
 
-### Embeddings models
+## Table of Contents
 
-For embeddings model, the example uses a sentence-transformers model https://www.sbert.net/docs/pretrained_models.html 
-The `all-mpnet-base-v2` model provides the best quality, while `all-MiniLM-L6-v2` is 5 times faster and still offers good quality.
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Setup](#setup)
+   - [Downloading Learning Path Index datasets](#downloading-learning-path-index-datasets)
+   - [Ingesting files](#ingesting-files)
+     - [via native shell CLI](#via-native-shell-cli)
+- [Usage](#usage)
+  - [Ask questions](#ask-questions)
+    - [via native shell CLI](#via-native-shell-cli-1)
+    - [via Docker container](#via-docker-container)
+  - [Try a different model](#try-a-different-model)
+  - [Adding more files](#adding-more-files)
+- [Models](#models)
+  - [Embeddings models](#embeddings-models)
+  - [Chat models](#chat-models)
+- [Known issues](#known-issues)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Chat models
+## Requirements
 
-For chat models, have a look at [this list](https://github.com/jmorganca/ollama/#model-library) on [Ollama's github repo](https://github.com/jmorganca/ollama/). The list is basic, hence other LLM resources must be consulted i.e.
+List out the key requirements needed to run the project, such as:
 
-- [Kaggle models](https://www.kaggle.com/models?query=LLM)
-- [HuggingFace models](https://huggingface.co/models?other=LLM)
-- ...(others)..
+- System requirements:
+  - Quadcore Intel CPU 2.3Ghz or higher, 16-32GB RAM, 100 GB Free diskspace
+  - Preferrable Linux or macOS
+- Python 3.9
+  - [pyenv](https://github.com/pyenv/pyenv)
+  - or venv
+  - or [pipenv](https://pipenv.pypa.io/en/latest/)
+- Docker (optional)
+- Ollama ([Download & Install(https://ollama.com/download))
 
-_Please share your resources on either or both of the Embeddings and Chat models with us_
-
-## Setup
+## Installation
 
 Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
@@ -46,30 +67,32 @@ Pull the model you'd like to use:
 ollama pull llama2-uncensored
 ```
 
-### Getting Learning Path Index datasets
+## Setup
 
-```
+### Downloading Learning Path Index datasets
+
+```bash
 mkdir -p source_documents
 
-curl https://raw.githubusercontent.com/Niskarsh12/learning-path-index/main/data/Courses%20and%20Learning%20Material.csv -o "source_documents/Courses and Learning Material.csv"
+curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Courses_and_Learning_Material.csv -o "source_documents/Courses_and_Learning_Material.csv"
 
-curl https://raw.githubusercontent.com/Niskarsh12/learning-path-index/main/data/Learning%20Pathway%20Index.csv -o "source_documents/Learning Pathway Index.csv"
+curl https://raw.githubusercontent.com/neomatrix369/learning-path-index/main/data/Learning_Pathway_Index.csv -o "source_documents/Learning_Pathway_Index.csv"
 ```
 
-Or you can manually download them from the Kaggle Dataset: Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset).
+Or you can manually download them from the [Kaggle Dataset: Learning Path Index Dataset](https://www.kaggle.com/datasets/neomatrix369/learning-path-index-dataset).
 
 ### Ingesting files
 
 #### via native shell CLI
 
 ```shell
-python ingest.py
+python3 ingest.py
 ```
 
 Output should look like this:
 
 ```shell
-root@sai-XPS-15-9560:/home# python ingest.py 
+root@sai-XPS-15-9560:/home# python3 ingest.py 
 Downloading (…)e9125/.gitattributes: 100%|███████████████████████████████████████████████████████████████████| 1.18k/1.18k [00:00<00:00, 2.07MB/s]
 Downloading (…)_Pooling/config.json: 100%|████████████████████████████████████████████████████████████████████████| 190/190 [00:00<00:00, 378kB/s]
 Downloading (…)7e55de9125/README.md: 100%|███████████████████████████████████████████████████████████████████| 10.6k/10.6k [00:00<00:00, 16.2MB/s]
@@ -115,12 +138,26 @@ optional arguments:
                         Use this flag to specify the name chunk overlap value to use to chunk source data.
 ```
 
+#### Known issues
+
+When trying to ingest and also run the GPT app, we can get this error on system with Python 3.10 or older:
+
+```python
+RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
+```
+
+If this occurs then use the Docker container to run your commands, instructions are given below under each sub-section.
+
+[back to ToC](#table-of-contents)
+
+## Usage
+
 ### Ask questions
 
 #### via native shell CLI
 
 ```shell
-python lpiGPT.py
+python3 lpiGPT.py
 
 Enter a query: Fetch me all machine learning courses of the advanced level from the Learning Path Index and show me results in a tabular form
 
@@ -150,7 +187,7 @@ To exit the GPT prompt, press Ctrl-C or Ctrl-D and it will return to the Linux/C
 
 
 ```bash                                                             
-> python lpiGPT.py --help
+> python3 lpiGPT.py --help
 usage: lpiGPT.py [-h] [--chat-model CHAT_MODEL] [--embeddings-model-name EMBEDDINGS_MODEL_NAME] [--persist-directory PERSIST_DIRECTORY]
                  [--target-source-chunks TARGET_SOURCE_CHUNKS] [--hide-source] [--mute-stream]
 
@@ -172,18 +209,9 @@ optional arguments:
   --mute-stream, -M     Use this flag to disable the streaming StdOut callback for LLMs.
 ```
 
-
-### Known issues
-
-When trying to ingest and also run the GPT app, we can get this error on system with Python 3.10 or older:
-
-```python
-RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
-```
-
-If this occurs then use the Docker container to run your commands, instructions are given below under each sub-section.
-
 #### via Docker container
+
+You can also setup an isolated environment i.e. inside Docker container and perform the same above operations
 
 ```shell
 cd docker
@@ -205,14 +233,14 @@ root@[your machine name]:/home#:
 in there, type the same commands as in the **via native shell CLI** sections of [Ingesting files](#ingesting-files) and [Ask questions](#ask-questions) respectively.
 
 
-### Try a different model:
+### Try a different model
 
-```
+```shell
 ollama pull llama2:13b
-python lpiGPT.py --chat-model=llama2:13b
+python3 lpiGPT.py --chat-model=llama2:13b
 ```
 
-## Adding more files
+### Adding more files
 
 Put any and all your files into the `source_documents` directory
 
@@ -220,3 +248,37 @@ The supported extensions are:
 
 - `.csv`: CSV
 and others, we have trimmed them off from here to keep this example simple and concise.
+
+[back to ToC](#table-of-contents)
+
+## Models
+
+### Embeddings models
+
+For embeddings model, the example uses a sentence-transformers model https://www.sbert.net/docs/pretrained_models.html 
+The `all-mpnet-base-v2` model provides the best quality, while `all-MiniLM-L6-v2` is 5 times faster and still offers good quality.
+
+### Chat models
+
+For chat models, have a look at [this list](https://github.com/jmorganca/ollama/#model-library) on [Ollama's github repo](https://github.com/jmorganca/ollama/). The list is basic, hence other LLM resources must be consulted i.e.
+
+- [Kaggle models](https://www.kaggle.com/models?query=LLM)
+- [HuggingFace models](https://huggingface.co/models?other=LLM)
+- ...(others)..
+
+_Please share your resources on either or both of the Embeddings and Chat models with us_
+
+## Contributing
+
+We are open to any or all of the below from your side in terms of contributions:
+
+    - Reporting issues
+    - Submitting pull requests
+    - Coding standards or guidelines
+    - Testing requirements
+
+## License
+
+See [LICENSE](https://github.com/neomatrix369/learning-path-index/blob/main/LICENSE) in the root folder of the project
+
+[back to ToC](#table-of-contents)
