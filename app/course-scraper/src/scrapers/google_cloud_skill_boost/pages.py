@@ -16,12 +16,12 @@ class GCSBLearningJourneyPage:
     """
     E.g https://www.cloudskillsboost.google/journeys/183)
     """
-
+    learning_plan_title = "//h1[@class='learning-plan-title']/text()"
     journeys = "//div[@class='activity-card']"
     journey_title = ".//h2[2]/text()"
-    journey_details = ".//div[@class='activity-details']//div[contains(@class, 'ql-subhead-1')]/text()"
+    journey_details = ".//div[@class='activity-details']//div[contains(@class, 'ql-title-medium')]/text()"
     journey_description = ".//p/text()"
-    journey_link = ".//ql-button[contains(text(), 'Learn more')]/@href"
+    journey_link = ".//ql-button/@href"
 
 
 class GCSBCourseTemplatePage:
