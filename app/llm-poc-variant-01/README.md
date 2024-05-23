@@ -46,6 +46,18 @@ List out the key requirements needed to run the project, such as:
 
 ## Installation
 
+Install [Ollama](https://github.com/jmorganca/ollama) using the below command on the host/local machine:
+
+```bash
+curl https://ollama.ai/install.sh | sh
+```
+
+Pull the model you'd like to use:
+
+```shell
+ollama pull llama2-uncensored
+```
+
 Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
 ```shell
@@ -60,14 +72,6 @@ Install the Python dependencies:
 ```shell
 pip install -r requirements.txt
 ```
-
-Pull the model you'd like to use:
-
-```shell
-ollama pull llama2-uncensored
-```
-
-## Setup
 
 ### Downloading Learning Path Index datasets
 
