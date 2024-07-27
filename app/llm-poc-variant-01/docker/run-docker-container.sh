@@ -21,11 +21,13 @@ OLLAMA_VOLUME_SHARED="--volume $(which ollama):/usr/bin/ollama"
 HF_CACHE_SHARED="--volume ${LOCAL_MODEL_FOLDER}/.cache:/root/.cache"
 
 set -x
-pullImage
+# pullImage
 time docker run --rm -it                   \
                 --platform="linux/amd64"   \
                 --network="host"           \
+                --add-host=host.docker.internal:host-gateway \
                 --workdir "${WORKDIR}"     \
+                --env OLLAMA_HOST="http://host.docker.internal:11434" \
                 ${HF_CACHE_SHARED}         \
                 ${MODEL_VOLUME_SHARED}     \
                 ${OLLAMA_VOLUME_SHARED}    \
