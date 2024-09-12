@@ -10,7 +10,7 @@ class Activity(BaseModel):
 
     id: str
     href: Optional[str]
-    duration: int | float
+    duration: Optional[int | float]
     title: str
     type: str
 
