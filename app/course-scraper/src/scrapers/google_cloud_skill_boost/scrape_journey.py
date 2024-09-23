@@ -17,37 +17,57 @@ DATA_FOLDER.mkdir(exist_ok=True, parents=True)
 
 
 # Open Journey Path
-def extract_ml_learning_path() -> list[dict]:
+def extract_ml_learning_path(GCSB_JOURNEY_URL) -> list[dict]:
+    # Send a request to the provided URL
     r = requests.get(GCSB_JOURNEY_URL)
     html_parser = etree.HTMLParser()
     dom = etree.fromstring(r.content, html_parser)
 
     data = []
     for journey in dom.xpath(pages.GCSBLearningJourneyPage.journeys):
+        try:
+            # Try to extract the first element from journey details
+            details = journey.xpath(pages.GCSBLearningJourneyPage.journey_details)[0]
+        except IndexError:
+            # If the first element is not available, use the full result or provide a default value
+            details = journey.xpath(pages.GCSBLearningJourneyPage.journey_details)
+            details = details if details else "No details available"
+
+        try:
+            # Try to extract the first link and construct the full URL
+            link = urljoin(GCSB_HOME_URL, journey.xpath(pages.GCSBLearningJourneyPage.journey_link)[0])
+        except IndexError:
+            # If the link is missing, handle it gracefully
+            link = urljoin(GCSB_HOME_URL, journey.xpath(pages.GCSBLearningJourneyPage.journey_link))
+            link = link if link else "No link available"
+
+        # Append the extracted information to the data list
         data.append(
             {
-                "title": journey.xpath(pages.GCSBLearningJourneyPage.journey_title)[0],
-                "details": journey.xpath(pages.GCSBLearningJourneyPage.journey_details)[
-                    0
-                ],
-                "description": journey.xpath(
-                    pages.GCSBLearningJourneyPage.journey_description
-                )[0],
-                "link": urljoin(
-                    GCSB_HOME_URL,
-                    journey.xpath(pages.GCSBLearningJourneyPage.journey_link)[0],
-                ),
+                "title": journey.xpath(pages.GCSBLearningJourneyPage.journey_title)[0] if journey.xpath(pages.GCSBLearningJourneyPage.journey_title) else "No title available",
+                "details": details,  # Use the result from the try-except block
+                "description": journey.xpath(pages.GCSBLearningJourneyPage.journey_description)[0] if journey.xpath(pages.GCSBLearningJourneyPage.journey_description) else "No description available",
+                "link": link,
             }
         )
 
     return data
 
+if __name__ == "__main__":
+    # Ask the user for the GCSB_JOURNEY_URL input
+    GCSB_JOURNEY_URL = input("Please enter the GCSB Journey URL: ")
+    data = extract_ml_learning_path(GCSB_JOURNEY_URL)
 
-ml_learning_path = extract_ml_learning_path()
-
-with open(
-    DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv"), "w", encoding="utf-8"
-) as f:
-    csvwriter = DictWriter(f, fieldnames=["title", "details", "description", "link"])
-    csvwriter.writeheader()
-    csvwriter.writerows(ml_learning_path)
+# Check if data is not empty
+if not data:
+    print("No data to write!")
+else:
+    try:
+        # Writing to the CSV file
+        with open(DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv"), "w", encoding="utf-8", newline='') as f:
+            csvwriter = DictWriter(f, fieldnames=["title", "details", "description", "link"])
+            csvwriter.writeheader()
+            csvwriter.writerows(data)
+        print(f"Data successfully written to {COURSE_CODE}-Courses.csv")
+    except Exception as e:
+        print(f"An error occurred while writing the file: {e}")
