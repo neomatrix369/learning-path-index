@@ -9,6 +9,7 @@ import torch
 
 import argparse
 import time
+import os
 from datetime import datetime
 
 from constants import CHROMA_SETTINGS
@@ -25,11 +26,11 @@ def main():
     prompt_template = \
     """
         [INST]
-        <<SYS>> You are an assistant for question-answering tasks using the Learning Path Index. 
+        <<SYS>> You are an assistant for question-answering tasks using the Learning Path Index.
         Show the results in a table or tabular form, and the results must contain a link for each line of the courses, modules or sub-modules returned.
-        <</SYS>> 
-        Context: {context} 
-        Question: {question} 
+        <</SYS>>
+        Context: {context}
+        Question: {question}
         Answer: [/INST]
     """
     PROMPT = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
@@ -41,8 +42,8 @@ def main():
     args = parse_arguments()
     embeddings = HuggingFaceEmbeddings(model_name=args.embeddings_model_name)
     vector_db = Chroma(
-        persist_directory=args.persist_directory, 
-        embedding_function=embeddings, 
+        persist_directory=args.persist_directory,
+        embedding_function=embeddings,
         client_settings=CHROMA_SETTINGS
     )
     retriever = vector_db.as_retriever(search_kwargs={"k": args.target_source_chunks})
@@ -98,8 +99,8 @@ def parse_arguments():
     parser.add_argument("--chat-model", "-CM", action='store', default="llama2-uncensored",
                         help='Use this flag to set the InstructGPT or Chat model name, see https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or https://ollama.ai/library for more names.')
     # For embeddings model, the example uses a sentence-transformers model
-    # https://www.sbert.net/docs/pretrained_models.html 
-    # "The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster 
+    # https://www.sbert.net/docs/pretrained_models.html
+    # "The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster
     # and still offers good quality."
     parser.add_argument("--embeddings-model-name", "-EM", action='store', default="all-MiniLM-L6-v2",
                         help='Use this flag to set the Embeddings model name, see https://www.sbert.net/docs/pretrained_models.html for examples of names. Use the same model as used for ingesting the documents (ingest.py)')
@@ -109,7 +110,7 @@ def parse_arguments():
 
     parser.add_argument("--target-source-chunks", "-C", action='store', default=500,
                         help='Use this flag to specify the name chunk size to use to chunk source data.')
-    
+
     parser.add_argument("--hide-source", "-S", action='store_true',
                         help='Use this flag to disable printing of source documents used for answers.')
 
