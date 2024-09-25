@@ -69,5 +69,10 @@ else:
             csvwriter.writeheader()
             csvwriter.writerows(data)
         print(f"Data successfully written to {COURSE_CODE}-Courses.csv")
+    except IOError as e:
+        print(f"An I/O error occurred while writing the file: {e}")
+    except csv.Error as e:
+        print(f"A CSV-related error occurred: {e}")
     except Exception as e:
+        print(f"An unexpected error occurred while writing the file: {e}")
         print(f"An error occurred while writing the file: {e}")
