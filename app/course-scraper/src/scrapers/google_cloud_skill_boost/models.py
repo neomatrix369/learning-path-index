@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from typing import Union
 
 
 class Activity(BaseModel):
@@ -10,7 +11,7 @@ class Activity(BaseModel):
 
     id: str
     href: Optional[str]
-    duration: int | float
+    duration: Union[int, float]
     title: str
     type: str
 
