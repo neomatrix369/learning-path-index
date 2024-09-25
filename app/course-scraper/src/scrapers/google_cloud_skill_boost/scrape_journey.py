@@ -55,6 +55,15 @@ def extract_ml_learning_path(GCSB_JOURNEY_URL) -> list[dict]:
 
 if __name__ == "__main__":
     # Ask the user for the GCSB_JOURNEY_URL input
+import argparse
+import os
+
+parser = argparse.ArgumentParser(description='Extract ML learning path')
+parser.add_argument('--url', env_var='GCSB_JOURNEY_URL', help='GCSB Journey URL')
+args = parser.parse_args()
+
+GCSB_JOURNEY_URL = args.url or os.getenv('GCSB_JOURNEY_URL')
+if not GCSB_JOURNEY_URL:
     GCSB_JOURNEY_URL = input("Please enter the GCSB Journey URL: ")
     data = extract_ml_learning_path(GCSB_JOURNEY_URL)
 
