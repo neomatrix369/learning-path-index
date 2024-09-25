@@ -16,7 +16,7 @@
 - Change to the appropriate directory
 
    ```bash
-   cd C:\{path}\learning-path-index\app\course-scraper
+   cd C:/{path}/learning-path-index/app/course-scraper
    ```
 
 
