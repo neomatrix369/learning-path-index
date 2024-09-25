@@ -57,7 +57,7 @@ source .venv/bin/activate
 
 Please note there are other options to use as well i.e. Conda, venv, virtualenv, poetry, etc. to isolate your development environments.
 
-For Windows download Microsoft Visual C++ 14.0 or greater [Link](https://visualstudio.microsoft.com/visual-cpp-build-tools/) During installation, ensure that "Desktop development with C++" is selected
+For Windows, download Microsoft Visual C++ 14.0 or greater ([Link](https://visualstudio.microsoft.com/visual-cpp-build-tools/)). During installation, ensure that "Desktop development with C++" is selected.
 
 Install the Python dependencies:
 
