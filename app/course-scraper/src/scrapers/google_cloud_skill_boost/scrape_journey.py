@@ -6,9 +6,10 @@ from lxml import etree
 from scrapers.google_cloud_skill_boost import pages
 from config import CONFIG
 import requests
+import sys
+import os
 
 COURSE_CODE = "CLMML11"
-GCSB_JOURNEY_URL = "https://www.cloudskillsboost.google/journeys/17"
 GCSB_HOME_URL = "https://www.cloudskillsboost.google/"
 GCSB_LOGIN_URL = "https://www.cloudskillsboost.google/users/sign_in"
 
@@ -44,19 +45,26 @@ def extract_ml_learning_path(GCSB_JOURNEY_URL) -> list[dict]:
         # Append the extracted information to the data list
         data.append(
             {
-                "title": journey.xpath(pages.GCSBLearningJourneyPage.journey_title)[0] if journey.xpath(pages.GCSBLearningJourneyPage.journey_title) else "No title available",
-                "details": details,  # Use the result from the try-except block
-                "description": journey.xpath(pages.GCSBLearningJourneyPage.journey_description)[0] if journey.xpath(pages.GCSBLearningJourneyPage.journey_description) else "No description available",
+                "title": journey.xpath(pages.GCSBLearningJourneyPage.journey_title)[0].strip() if journey.xpath(pages.GCSBLearningJourneyPage.journey_title) else "No title available",
+                "details": details.strip(),  # Use the result from the try-except block
+                "description": journey.xpath(pages.GCSBLearningJourneyPage.journey_description)[0].strip() if journey.xpath(pages.GCSBLearningJourneyPage.journey_description) else "No description available",
                 "link": link,
             }
         )
 
     return data
-
 if __name__ == "__main__":
-    # Ask the user for the GCSB_JOURNEY_URL input
-    GCSB_JOURNEY_URL = input("Please enter the GCSB Journey URL: ")
+
+    try:
+        import config
+        GCSB_JOURNEY_URL = CONFIG.GCSB_JOURNEY_URL  # Directly access GCSB_JOURNEY_URL
+        print(f'Using this URL: {GCSB_JOURNEY_URL}')
+    except (ImportError, AttributeError):
+        GCSB_JOURNEY_URL = input("Enter the GCSB Journey URL: ")
+
     data = extract_ml_learning_path(GCSB_JOURNEY_URL)
+
+
 
 # Check if data is not empty
 if not data:
