@@ -20,7 +20,7 @@ resource "aws_instance" "lpi-cpu-vm" {
     ### Important to set this to the correct user, as for AMI Ubuntu/Linux boxes
     ### the default name is 'ubuntu', and NOT 'ec2-user'
     user        = "ubuntu"
-    private_key = file("~/.ssh/lpi-key")
+    private_key = var.ssh_private_key
     password    = ""
     host        = self.public_ip
   }
