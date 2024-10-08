@@ -1,0 +1,7 @@
+langchain==0.0.216
+streamlit==1.27.2
+tqdm==4.65.0
+# Pre-requisites: [sudo] apt install libopenblas-base libomp-dev
+# See https://github.com/onfido/faiss_prebuilt
+faiss-cpu==1.7.4
+faiss-gpu==1.7.2
