@@ -6,6 +6,9 @@ from lxml import etree
 from scrapers.google_cloud_skill_boost import pages
 from config import CONFIG
 import requests
+import argparse
+import os
+
 
 COURSE_CODE = "CLMML11"
 GCSB_JOURNEY_URL = "https://www.cloudskillsboost.google/journeys/17"
@@ -54,20 +57,32 @@ def extract_ml_learning_path(GCSB_JOURNEY_URL) -> list[dict]:
     return data
 
 if __name__ == "__main__":
-    # Ask the user for the GCSB_JOURNEY_URL input
-    GCSB_JOURNEY_URL = input("Please enter the GCSB Journey URL: ")
-    data = extract_ml_learning_path(GCSB_JOURNEY_URL)
+  parser = argparse.ArgumentParser(description='Extract ML learning path')
+  parser.add_argument('--url', env_var='GCSB_JOURNEY_URL', help='GCSB Journey URL')
+  args = parser.parse_args()
 
-# Check if data is not empty
-if not data:
-    print("No data to write!")
-else:
-    try:
-        # Writing to the CSV file
-        with open(DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv"), "w", encoding="utf-8", newline='') as f:
-            csvwriter = DictWriter(f, fieldnames=["title", "details", "description", "link"])
-            csvwriter.writeheader()
-            csvwriter.writerows(data)
-        print(f"Data successfully written to {COURSE_CODE}-Courses.csv")
-    except Exception as e:
-        print(f"An error occurred while writing the file: {e}")
+  GCSB_JOURNEY_URL = args.url or os.getenv('GCSB_JOURNEY_URL')
+  if not GCSB_JOURNEY_URL:
+      GCSB_JOURNEY_URL = input("Please enter the GCSB Journey URL: ")
+      data = extract_ml_learning_path(GCSB_JOURNEY_URL)
+
+
+  # Check if data is not empty
+  if not data:
+      print("No data to write!")
+  else:
+      try:
+          # Writing to the CSV file
+          with open(DATA_FOLDER.joinpath(f"{COURSE_CODE}-Courses.csv"), "w", encoding="utf-8", newline='') as f:
+              csvwriter = DictWriter(f, fieldnames=["title", "details", "description", "link"])
+              csvwriter.writeheader()
+              csvwriter.writerows(data)
+          print(f"Data successfully written to {COURSE_CODE}-Courses.csv")
+
+      except IOError as e:
+          print(f"An I/O error occurred while writing the file: {e}")
+      except csv.Error as e:
+          print(f"A CSV-related error occurred: {e}")
+      except Exception as e:
+          print(f"An unexpected error occurred while writing the file: {e}")
+
