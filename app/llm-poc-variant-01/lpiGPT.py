@@ -14,6 +14,8 @@ from datetime import datetime
 
 from constants import CHROMA_SETTINGS
 
+OLLAMA_HOST = os.getenv('OLLAMA_HOST')
+
 def main():
 
     IS_GPU_AVAILABLE = torch.cuda.is_available()
@@ -51,7 +53,7 @@ def main():
     # activate/deactivate the streaming StdOut callback for LLMs
     callbacks = [] if args.mute_stream else [StreamingStdOutCallbackHandler()]
 
-    llm = Ollama(model=args.chat_model, callbacks=callbacks)
+    llm = Ollama(model=args.chat_model, callbacks=callbacks, base_url=OLLAMA_HOST)
 
     qa = RetrievalQA.from_chain_type(
         llm=llm,

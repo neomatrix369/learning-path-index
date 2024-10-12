@@ -22,7 +22,10 @@ cleanup() {
 pushImageToHub() {
 	echo "Pushing image ${FULL_DOCKER_TAG_NAME} to Docker Hub"; echo ""
 
-	docker login --username=${DOCKER_USER_NAME}
+	if ! docker login --username=${DOCKER_USER_NAME}; then
+		echo "Failed to login to Docker Hub"
+		exit 1
+	fi
 	pushImage ${FULL_DOCKER_TAG_NAME}
 }
 
