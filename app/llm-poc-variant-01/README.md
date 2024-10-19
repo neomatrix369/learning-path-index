@@ -43,8 +43,22 @@ List out the key requirements needed to run the project, such as:
   - or [pipenv](https://pipenv.pypa.io/en/latest/)
 - Docker (optional)
 - Ollama ([Download & Install(https://ollama.com/download))
+- Windows:
+  -  Microsoft Visual C++ 14.0 or greater is required (needed when installing ```hnswlib``` )
 
 ## Installation
+
+Install [Ollama](https://github.com/jmorganca/ollama) using the below command on the host/local machine:
+
+```bash
+curl https://ollama.ai/install.sh | sh
+```
+
+Pull the model you'd like to use:
+
+```shell
+ollama pull llama2-uncensored
+```
 
 Set up a virtual environment (or use the [Docker route](#via-docker-container)):
 
@@ -55,17 +69,28 @@ source .venv/bin/activate
 
 Please note there are other options to use as well i.e. Conda, venv, virtualenv, poetry, etc. to isolate your development environments.
 
+For Windows, download Microsoft Visual C++ 14.0 or greater [Link](https://visualstudio.microsoft.com/visual-cpp-build-tools/). During installation, ensure that "Desktop development with C++" is selected
+
 Install the Python dependencies:
 
 ```shell
 pip install -r requirements.txt
 ```
 
+If you haven't installed Ollama yet, refer to the [Ollama repository](https://github.com/ollama/ollama) for installation instructions.
+
 Pull the model you'd like to use:
 
 ```shell
 ollama pull llama2-uncensored
 ```
+
+and start the Ollama server
+
+```shell
+ollama serve
+```
+
 
 ## Setup
 
@@ -92,7 +117,7 @@ python3 ingest.py
 Output should look like this:
 
 ```shell
-root@sai-XPS-15-9560:/home# python3 ingest.py 
+root@sai-XPS-15-9560:/home# python3 ingest.py
 Downloading (…)e9125/.gitattributes: 100%|███████████████████████████████████████████████████████████████████| 1.18k/1.18k [00:00<00:00, 2.07MB/s]
 Downloading (…)_Pooling/config.json: 100%|████████████████████████████████████████████████████████████████████████| 190/190 [00:00<00:00, 378kB/s]
 Downloading (…)7e55de9125/README.md: 100%|███████████████████████████████████████████████████████████████████| 10.6k/10.6k [00:00<00:00, 16.2MB/s]
@@ -140,7 +165,7 @@ optional arguments:
 
 #### Known issues
 
-When trying to ingest and also run the GPT app, we can get this error on system with Python 3.10 or older:
+- When trying to ingest and also run the GPT app, we can get this error on system with Python 3.10 or older
 
 ```python
 RuntimeError: Your system has an unsupported version of sqlite3. Chroma requires sqlite3 >= 3.35.0.
@@ -155,6 +180,14 @@ If this occurs then use the Docker container to run your commands, instructions 
 ### Ask questions
 
 #### via native shell CLI
+
+Before running ```lpiGPT.py```you need to specify the base URL for the Ollama API or the local instance of Ollama running on your machine. By default this will return a ```None``` value.
+
+- Windows:
+  - This is typically http://localhost:11434 and can be set by using the following in command line:
+```shell
+set OLLAMA_HOST=http://localhost:11434
+```
 
 ```shell
 python3 lpiGPT.py
@@ -255,7 +288,7 @@ and others, we have trimmed them off from here to keep this example simple and c
 
 ### Embeddings models
 
-For embeddings model, the example uses a sentence-transformers model https://www.sbert.net/docs/pretrained_models.html 
+For embeddings model, the example uses a sentence-transformers model https://www.sbert.net/docs/pretrained_models.html
 The `all-mpnet-base-v2` model provides the best quality, while `all-MiniLM-L6-v2` is 5 times faster and still offers good quality.
 
 ### Chat models
