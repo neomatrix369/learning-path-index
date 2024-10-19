@@ -2,6 +2,7 @@
 import argparse
 import os
 import time
+import os
 from datetime import datetime
 
 import torch
@@ -32,11 +33,11 @@ def main():
     # https://smith.langchain.com/hub/rlm/rag-prompt-llama
     prompt_template = """
         [INST]
-        <<SYS>> You are an assistant for question-answering tasks using the Learning Path Index. 
+        <<SYS>> You are an assistant for question-answering tasks using the Learning Path Index.
         Show the results in a table or tabular form, and the results must contain a link for each line of the courses, modules or sub-modules returned.
-        <</SYS>> 
-        Context: {context} 
-        Question: {question} 
+        <</SYS>>
+        Context: {context}
+        Question: {question}
         Answer: [/INST]
     """
     PROMPT = PromptTemplate(
