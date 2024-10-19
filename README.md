@@ -41,7 +41,8 @@ The outcome of this effort was the creation of this _Git repo_ and the KaggleX [
 
 ### [7. Contextual Search On Kaggle Learning Path Index](https://github.com/mbhoge/learning-path-index-rag-search/blob/learning-path-index-search-01/app/llm-poc-variant-02/README.md)
 
-
+## Getting Started and Setup
+Please refer to the getting started guide, [Getting Started](getting-started.md), for setup instructions.
 
 ## Potential Innovations
 
