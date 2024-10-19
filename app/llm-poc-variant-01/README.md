@@ -77,6 +77,23 @@ Install the Python dependencies:
 pip install -r requirements.txt
 ```
 
+If you haven't installed Ollama yet, refer to the [Ollama repository](https://github.com/ollama/ollama) for installation instructions.
+
+Pull the model you'd like to use:
+
+```shell
+ollama pull llama2-uncensored
+```
+
+and start the Ollama server
+
+```shell
+ollama serve
+```
+
+
+## Setup
+
 ### Downloading Learning Path Index datasets
 
 ```bash
