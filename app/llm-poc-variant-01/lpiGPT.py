@@ -13,24 +13,31 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.llms import Ollama
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
+from langchain.vectorstores.base import VectorStoreRetriever
 
 OLLAMA_HOST = os.getenv("OLLAMA_HOST")
 
 
-def main():
-
-    IS_GPU_AVAILABLE = torch.cuda.is_available()
-    (
-        print(
-            f"~~~ GPU is available (CUDA-DNN Enabled: {torch.backends.cudnn.enabled}) ~~~"
-        )
-        if IS_GPU_AVAILABLE
-        else print("~~~ GPU is NOT available, falling back to CPU ~~~")
+def build_retriever(
+    model_embeddings: str,
+    persist_directory: str,
+    target_source_chunks: int = 500,
+) -> VectorStoreRetriever:
+    embeddings = HuggingFaceEmbeddings(model_name=model_embeddings)
+    vector_db = Chroma(
+        persist_directory,
+        embedding_function=embeddings,
+        client_settings=CHROMA_SETTINGS,
     )
+    return vector_db.as_retriever(search_kwargs={'k': target_source_chunks})
 
-    # https://smith.langchain.com/hub/rlm/rag-prompt-mistral
-    #                          or
-    # https://smith.langchain.com/hub/rlm/rag-prompt-llama
+
+def build_prompt():
+    """
+    Reference/Guide:
+    - https://smith.langchain.com/hub/rlm/rag-prompt-mistral
+    - https://smith.langchain.com/hub/rlm/rag-prompt-llama
+    """
     prompt_template = """
         [INST]
         <<SYS>> You are an assistant for question-answering tasks using the Learning Path Index.
@@ -40,71 +47,41 @@ def main():
         Question: {question}
         Answer: [/INST]
     """
-    PROMPT = PromptTemplate(
-        template=prompt_template, input_variables=["context", "question"]
+    return PromptTemplate(
+        template=prompt_template, input_variables=['context', 'question']
     )
-    chain_type_kwargs = {"prompt": PROMPT}
 
+
+def build_model(
+    retriever: VectorStoreRetriever,
+    model_name: str = 'gemma:2b',
+    mute_stream: bool = False,
+):
+    IS_GPU_AVAILABLE = torch.cuda.is_available()
+    (
+        print(
+            f'~~~ GPU is available (CUDA-DNN Enabled: {torch.backends.cudnn.enabled}) ~~~'
+        )
+        if IS_GPU_AVAILABLE
+        else print('~~~ GPU is NOT available, falling back to CPU ~~~')
+    )
     start = time.time()
 
-    # Parse the command line arguments
-    args = parse_arguments()
-    embeddings = HuggingFaceEmbeddings(model_name=args.embeddings_model_name)
-    vector_db = Chroma(
-        persist_directory=args.persist_directory,
-        embedding_function=embeddings,
-        client_settings=CHROMA_SETTINGS,
-    )
-    retriever = vector_db.as_retriever(search_kwargs={"k": args.target_source_chunks})
-
     # activate/deactivate the streaming StdOut callback for LLMs
-    callbacks = [] if args.mute_stream else [StreamingStdOutCallbackHandler()]
-
-    llm = Ollama(model=args.chat_model, callbacks=callbacks, base_url=OLLAMA_HOST)
-
+    callbacks = [] if mute_stream else [StreamingStdOutCallbackHandler()]
+    llm = Ollama(model=model_name, callbacks=callbacks, base_url=OLLAMA_HOST)
     qa = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
         retriever=retriever,
-        return_source_documents=not args.hide_source,
-        chain_type_kwargs=chain_type_kwargs,
+        return_source_documents=True,
+        chain_type_kwargs={'prompt': build_prompt()},
     )
 
     end = time.time()
 
-    print(f"Models took about {end - start} seconds to load.")
-    # Interactive questions and answers
-    while True:
-        query = input("\nEnter a query: ")
-        if query == "exit":
-            break
-        if query.strip() == "":
-            continue
-
-        # Get the answer from the chain
-        start = time.time()
-        print(
-            f"\nStart time: {datetime.utcfromtimestamp(start).strftime('%Y-%m-%d %H:%M:%S')}"
-        )
-        answer = qa({"query": query})
-        answer, docs = answer["result"], (
-            [] if args.hide_source else answer["source_documents"]
-        )
-        end = time.time()
-
-        # Print the result
-        print("\n\n> Question:")
-        print(query)
-        print(
-            f"\nEnd time: {datetime.utcfromtimestamp(end).strftime('%Y-%m-%d %H:%M:%S')}"
-        )
-        print(f"\nAnswer (took about {end - start} seconds):")
-        print(answer)
-
-        # # Print the relevant sources used for the answer
-        # for document in docs:
-        #     print("\n> " + document.metadata["source"] + ":")
-        #     print(document.page_content)
+    print(f'Models took about {end - start} seconds to load.')
+    return qa, llm
 
 
 def parse_arguments():
@@ -114,11 +91,11 @@ def parse_arguments():
     )
     # https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or https://ollama.ai/library
     parser.add_argument(
-        "--chat-model",
-        "-CM",
-        action="store",
-        default="llama2-uncensored",
-        help="Use this flag to set the InstructGPT or Chat model name, see https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or https://ollama.ai/library for more names.",
+        '--chat-model',
+        '-CM',
+        action='store',
+        default='gemma:2b',
+        help='Use this flag to set the InstructGPT or Chat model name, see https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard or https://ollama.ai/library for more names.',
     )
     # For embeddings model, the example uses a sentence-transformers model
     # https://www.sbert.net/docs/pretrained_models.html
@@ -165,5 +142,49 @@ def parse_arguments():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
+    args = parse_arguments()
+    retriever = build_retriever(args.embeddings_model_name, args.persist_directory)
+    qa, _llm = build_model(
+        retriever,
+        model_name=args.chat_model,
+        mute_stream=args.mute_stream,
+    )
+    # Interactive questions and answers
+    while True:
+        query = input('\nEnter a query: ')
+        if query == 'exit':
+            break
+        if query.strip() == '':
+            continue
+
+        # Get the answer from the chain
+        start = time.time()
+        print(
+            f"\nStart time: {datetime.utcfromtimestamp(start).strftime('%Y-%m-%d %H:%M:%S')}"
+        )
+        answer = qa({'query': query})
+        answer, docs = (
+            answer['result'],
+            answer.get('source_documents', []),
+        )
+        end = time.time()
+
+        # Print the result
+        print('\n\n> Question:')
+        print(query)
+        print(
+            f"\nEnd time: {datetime.utcfromtimestamp(end).strftime('%Y-%m-%d %H:%M:%S')}"
+        )
+        print(f'\nAnswer (took about {end - start} seconds):')
+        print(answer)
+
+        # Print the relevant sources used for the answer
+        if not args.hide_source:
+            for document in docs:
+                print('\n> ' + document.metadata['source'] + ':')
+                print(document.page_content)
+
+
+if __name__ == '__main__':
     main()
