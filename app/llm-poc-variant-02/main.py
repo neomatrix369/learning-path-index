@@ -27,7 +27,9 @@ class GenerateLearningPathIndexEmbeddings:
         load_dotenv()  # Load .env file
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         # load the csv file from the data folder above 2 folders
-        self.data_path = os.path.join('..\..\data', csv_filename)
+        # self.data_path = os.path.join('..\..\data', csv_filename)
+        self.data_path = os.path.join('../../data', csv_filename)
+        self.data_path = os.path.join('data', csv_filename)
         self.our_custom_data = None
         self.openai_embeddings = None
         self.faiss_vectorstore = None
