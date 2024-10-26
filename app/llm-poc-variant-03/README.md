@@ -1,3 +1,3 @@
 # Gemma Model Learning Index Path
 
-## Fine tune gemma model withcustom data
+## Fine tune Gemma model with custom data
