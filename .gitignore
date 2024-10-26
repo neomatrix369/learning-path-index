@@ -161,3 +161,4 @@ cython_debug/
 
 # Security
 *.pem
+lpi_env/
