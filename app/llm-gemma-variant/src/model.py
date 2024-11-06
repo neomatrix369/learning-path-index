@@ -31,7 +31,7 @@ class Gemma(CustomLLM):
 
     @llm_completion_callback()
     def complete(self, prompt: str, **kwargs: Any) -> CompletionResponse:
-        return CompletionResponse(text=self.model.complete(prompt, max_length=self.num_output))
+        return self.model.complete(prompt, max_length=self.num_output)
 
     @llm_completion_callback()
     def stream_complete(self, prompt: str, **kwargs: Any) -> CompletionResponseGen:

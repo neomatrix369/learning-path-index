@@ -6,13 +6,13 @@ import pandas as pd
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.vector_stores.weaviate  import WeaviateVectorStore
 
+
 class VectorDB:
     """
     Create a weaviate vector database from a the Learning Path Index csv file.
     """
     def __init__(  
         self,
-        folder_path: str,
         data_path: str,
         index_name: str,
     ):
@@ -20,15 +20,26 @@ class VectorDB:
         Initialize the VectorDB class.
         
         Args:
-            folder_path: str, path to the folder containing the Learning Path Index csv file.
             data_path: str, path to the Learning Path Index csv file.
             index_name: str, name of the index to create.   
         Output:
             None
         """
-        self.folder_path = folder_path
         self.data_path = data_path
         self.index_name = index_name
+
+        self.client = weaviate.connect_to_embedded()
+
+    def disconnect(self):
+        """
+        Disconnect from the Weaviate vector database.
+        """
+        if self.client:
+            self.client.close()  # Assuming the client has a close method
+            logger.info("Disconnected from the Weaviate vector database.")
+        else:
+            logger.warning("No active connection to disconnect.")
+
     
     def LPI_loader(self):
         """
@@ -62,15 +73,13 @@ class VectorDB:
         Create a weaviate vector database from the Learning Path Index csv file.
         """
         documents = self.LPI_loader()
+        
 
-        # Connect to the weaviate embedded instance
-        client = weaviate.connect_to_embedded()
-
-        logger.info(f"Connected to the weaviate embedded instance: {client.is_ready()}")
+        logger.info(f"Connected to the weaviate embedded instance: {self.client.is_ready()}")
 
         # Create the vector database
         vector_store = WeaviateVectorStore(
-            weaviate_client = client, 
+            weaviate_client = self.client, 
             index_name = self.index_name
         )
 
@@ -78,9 +87,11 @@ class VectorDB:
         storage_context = StorageContext.from_defaults(vector_store=vector_store)
         # Setup the index
         # build VectorStoreIndex that takes care of chunking documents
-        # and encoding chunks to embeddings for future retrieval
+        # and   encoding chunks to embeddings for future retrieval
+
+        logger.info(f"Creating the {self.index_name} index")
         index = VectorStoreIndex.from_documents(
             documents, storage_context=storage_context
         )
-
+        logger.info(f"The {self.index_name} index has been created")
         return index
