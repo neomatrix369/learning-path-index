@@ -28,7 +28,10 @@ class VectorDB:
         self.data_path = data_path
         self.index_name = index_name
 
-        self.client = weaviate.connect_to_embedded()
+        try:
+            self.client = weaviate.connect_to_embedded()
+        except weaviate.exceptions.WeaviateConnectionError as e:
+            raise ConnectionError(f"Failed to connect to Weaviate: {str(e)}")
 
     def disconnect(self):
         """
