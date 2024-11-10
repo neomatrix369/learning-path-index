@@ -24,7 +24,7 @@ def main():
 
     # Getting data path
     current_directory = os.getcwd()
-    data_path = current_directory + "//LPI_folder//Learning_Pathway_Index.csv"
+    data_path = os.path.join(current_directory, r"LPI_folder/Learning_Pathway_Index.csv")
 
     # Initialize the VectorDB class
     weaviate_vector_db = VectorDB(
@@ -35,7 +35,6 @@ def main():
     # Create the vector database
     index = weaviate_vector_db.vector_db_creation()
 
-    breakpoint()
     # Initialize RAG
     naive_rag_query_engine = index.as_query_engine()
 

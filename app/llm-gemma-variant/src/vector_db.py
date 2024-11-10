@@ -64,10 +64,13 @@ class VectorDB:
 
 
         # Adding Metadata to the documents
-        start = 1
-        for _, row in df.iterrows():
-            documents[start].metadata = {'source': row['Source'], 'Course': row['Course_Learning_Material'], 'Module' : row['Module'] }
-            start += 1
+        for i, row in df.iterrows():
+            metadata = {
+                'source': row['Source'],
+                'course': row['Course_Learning_Material'],
+                'module': row['Module']
+            }
+            documents[i + 1].metadata = metadata
         
         return documents
 
