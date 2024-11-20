@@ -16,6 +16,7 @@ from langchain.vectorstores.base import VectorStoreRetriever
 
 OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
 
+
 def build_retriever(
     model_embeddings: str,
     persist_directory: str,
@@ -26,15 +27,6 @@ def build_retriever(
         persist_directory,
         embedding_function=embeddings,
         client_settings=CHROMA_SETTINGS,
-
-def build_model():
-    IS_GPU_AVAILABLE = torch.cuda.is_available()
-    (
-        print(
-            f'~~~ GPU is available (CUDA-DNN Enabled: {torch.backends.cudnn.enabled}) ~~~'
-        )
-        if IS_GPU_AVAILABLE
-        else print('~~~ GPU is NOT available, falling back to CPU ~~~')
     )
     return vector_db.as_retriever(search_kwargs={'k': target_source_chunks})
 
@@ -89,44 +81,6 @@ def build_model(
 
     print(f'Models took about {end - start} seconds to load.')
     return qa, llm
-
-
-def main():
-    args = parse_arguments()
-    qa, _ = build_model()
-    # Interactive questions and answers
-    while True:
-        query = input('\nEnter a query: ')
-        if query == 'exit':
-            break
-        if query.strip() == '':
-            continue
-
-        # Get the answer from the chain
-        start = time.time()
-        print(
-            f"\nStart time: {datetime.utcfromtimestamp(start).strftime('%Y-%m-%d %H:%M:%S')}"
-        )
-        answer = qa({'query': query})
-        answer, _docs = (
-            answer['result'],
-            ([] if args.hide_source else answer['source_documents']),
-        )
-        end = time.time()
-
-        # Print the result
-        print('\n\n> Question:')
-        print(query)
-        print(
-            f"\nEnd time: {datetime.utcfromtimestamp(end).strftime('%Y-%m-%d %H:%M:%S')}"
-        )
-        print(f'\nAnswer (took about {end - start} seconds):')
-        print(answer)
-
-        # # Print the relevant sources used for the answer
-        # for document in docs:
-        #     print("\n> " + document.metadata["source"] + ":")
-        #     print(document.page_content)
 
 
 def parse_arguments():
