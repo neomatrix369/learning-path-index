@@ -1,0 +1,4 @@
+.terraform*
+terraform.*
+.service_account_credentials.json
+*.plan

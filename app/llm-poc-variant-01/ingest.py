@@ -73,11 +73,13 @@ def process_documents(
         ignored_files = []
     start_time = time.time()
     print(f'Loading documents from {source_documents}')
+
     documents = load_documents(source_documents, ignored_files)
     if not documents:
         print('No new documents to load')
         exit(0)
     print(f'Loaded {len(documents)} new documents from {source_documents}')
+
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size, chunk_overlap=chunk_overlap
     )
