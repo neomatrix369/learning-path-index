@@ -18,7 +18,17 @@ variable "project_id" {
   description = "The ID of the GCP project"
 }
 
+variable "region" {
+  type = string
+  description = "The region of the GCP project"
+}
+
+variable "zone" {
+  type = string
+  description = "The zone of the GCP project"
+}
+
 provider "google" {
   project = var.project_id
-  region  = "europe-west1"
+  region  = var.region
 }

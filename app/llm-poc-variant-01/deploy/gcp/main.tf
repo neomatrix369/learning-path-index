@@ -1,7 +1,7 @@
 resource "google_compute_instance" "lpi-cpu-vm" {
   name         = "lpi-llm-cpu"
   machine_type = "n2-standard-8"
-  zone         = "europe-west1-b"
+  zone         = var.zone
 
   boot_disk {
     initialize_params {

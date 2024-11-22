@@ -1,102 +1,108 @@
-# Deployment: Infrastructure as code
+ # Deployment: Infrastructure as Code
 
-The scripts in this folder give the ability to provision and manage compute capacity using [Google Cloud Platform](https://cloud.google.com/), in order to deploy the docker container and run the app in it.
+The scripts in this folder give the ability to provision and manage compute capacity using [Google Cloud Platform](https://cloud.google.com/), in order to deploy the LLM Application and provision the Chainlit app.
 
-In short the scripts does the below:
-- [instructions to follow]
+In short, the scripts do the following:
+- Create compute instances and associated network resources necessary to run an instance on GCP
+- Create the necessary firewall configurations to allow services to communicate publicly over HTTP and HTTPS
+- Set up an [Ollama](https://github.com/ollama/ollama) service on the Compute instance, and start it
+- Finally, start the Chainlit app, and expose it on port 8000. The interface will be accessible on `<compute-instance-public-IP>:8000`
 
-**Table of content**
+![Preview of the Chainlit app](chainlit-app-demo.gif "Preview of the Chainlit app")
+
+**Table of Contents**
 - [Pre-requisites](#pre-requisites)
 - [Provisioning Infrastructure using Terraform](#provisioning-infrastructure-using-terraform)
-  + [Create infrastructure from the CLI using Terraform](#create-infrastructure-from-the-cli-using-terraform)
-  + [Deploy the docker image with the notebooks and libraries](#deploy-the-docker-image-with-the-notebooks-and-libraries)
-  + [Destroy infrastructure (cleanup)](#destroy-infrastructure-cleanup)
+  - [Create a new project on Google Console](#create-a-new-project-on-google-console)
+  - [Authenticate Terraform with GCloud credentials](#authenticate-terraform-with-gcloud-credentials)
+  - [Create Cloud Bucket to store Terraform state](#create-cloud-bucket-to-store-terraform-state)
+  - [Deploy with Terraform](#deploy-with-terraform)
+  - [Destroy infrastructure (cleanup)](#destroy-infrastructure-cleanup)
 - [Security](#security)
 
 ## Pre-requisites
 
-- [Google Cloud Platform & Relates stuff]
-- [Install Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) (all methods for the various platforms are mentioned)
-- Clone this repo and in the right folder:
+- A Google Console account with some credits. [If it's a new GCP account, you might get access to free $300 credits](https://cloud.google.com/free?hl=en)
+- Install GCloud CLI. See [the official GCloud installation guide](https://cloud.google.com/sdk/docs/install).
+- [Install Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) (all operating systems are supported)
+- Clone this repository
+
 ```bash
-$ git clone https://github.com/neomatrix369/learning-path-index/
-$ cd learning-path-index
-$ cd app/llm-poc-variant-01/deploy/gcp
+git clone https://github.com/neomatrix369/learning-path-index/
+cd learning-path-index
+cd app/llm-poc-variant-01/deploy/gcp
 ```
 
-## Install Terraform
+For a summary (also helps to verify the steps) of the above steps please see [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs).
 
-On Linux
+### Quick Terraform install script for Linux
+
 ```bash
 curl -sSL https://releases.hashicorp.com/terraform/1.9.8/terraform_1.9.8_linux_386.zip -o ~/terraform_1.9.8_linux_386.zip
-echo "Downloaded terraform zip"
 
 unzip -q ~/terraform_1.9.8_linux_386.zip -d /tmp/terraform_1.9.8_linux_386
 mv /tmp/terraform_1.9.8_linux_386/terraform /usr/local/bin/terraform
 
 rm -rf /tmp/terraform_1.9.8_linux_386/
-
-echo "Install successful"
-
 ```
 
-Follow [the official installation guide from Hashicorp](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
-For a summary (also helps to verify the steps) of the above steps please see [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs).
 
 ## Provisioning Infrastructure using Terraform
+- #### Create a new project on Google Console.
+  In your terminal, in the LPI repository folder, run:
+  ```bash
+  gcloud config set project <PROJECT_ID>
+  ```
 
-### Create infrastructure from the CLI using Terraform
+- #### Authenticate Terraform with GCloud credentials
+  This workflow assumes you are working on a personal computer/workstation. For CI/CD pipelines, [other authentication steps are recommended](https://cloud.google.com/docs/terraform)
+  ```bash
+  gcloud auth application-default login
+  ```
 
-- Deploy with terraform
+- #### Create Cloud Bucket to store Terraform state
+  ```bash
+  gsutil mb -l europe-west1 gs://llm-project-sbx-tf-state
 
+  gsutil versioning set on gs://llm-project-sbx-tf-state
+  ```
+
+  Substitute `europe-west1` for [any other region of your choice](https://cloud.google.com/compute/docs/regions-zones).
+
+- #### Deploy with terraform
+
+  ```bash
+  terraform init
+
+  terraform workspace new llm-project
+
+  terraform apply --auto-approve
+  ```
+
+  The deployment process should end with a list of private/public ip addresses like so:
+
+  ```bash
+  Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+  Outputs:
+
+  network_interface_0_access_config_0_nat_ip = "<REDACTED>"
+  network_interface_0_network_ip = "<REDACTED>"
+  self_link = "<REDACTED>"
+  tags = toset([
+    "http-server",
+    "https-server",
+    "lpi-sg",
+  ])
+  ```
+
+  The public IP addresses are fairly dynamic in nature and could be between any range (example shown above). Please make a note of the Public IP above as it will be needed in the following steps.
+
+- #### SSH into the Compute Instance
+The compute instance can be accessed over SSH viz:
 ```bash
-$ terraform init
-$ terraform apply --auto-approve
-```
-
-The deployment process should end with a list of private/public ip addresses like so:
-
-```bash
-Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
-
-Outputs:
-
-instance_private_ips = [
-    10.1.nn.m
-]
-instance_public_ips = [
-    1xx.145.174.85
-]
-
-```
-
-The public IP addresses are fairly dynamic in nature and could be between any range (example shown above). Please make a note of the Public IP above as it will be needed in the following steps.
-
-### Deploy the docker image with the notebooks and libraries
-
-- use ssh and docker to make that end meet
-
-```bash
-$ ./run-docker-container.sh
-```
-
-### Recover/retry from failed attempt
-
-- Apply the fix to the configuration or script or both
-- And run the below again:
-
-```bash
-$ terraform apply --auto-approve
-```
-
-### Start clean after a failed attempt (errors encountered)
-
-- Run the below before proceeding:
-
-```bash
-$ terraform destroy --auto-approve
-$ terraform apply --auto-approve
+gcloud compute ssh --project=<PROJECT_ID> --zone=<PROJECT_GCP_ZONE> lpi-llm-cpu-vm
 ```
 
 ### Destroy infrastructure (cleanup)
@@ -104,7 +110,7 @@ $ terraform apply --auto-approve
 - Remove resources or destroy them with terraform
 
 ```bash
-$ terraform destroy --auto-approve
+$ terraform destroy --var-file=project.tfvars --auto-approve
 ```
 
 You should see something like this at the end of a successful run:
@@ -118,8 +124,4 @@ Destroy complete! Resources: 7 destroyed.
 
 ### Security
 
-Note that this setup does not take into account establishing a secure `http` i.e. `https` communication between the Jupyter lab instance and the browser. Please beware when using this in your target domain depending on the prerequisites you need to conform to. This example is good for learning and illustration purposes, please do NOT deploy it in production or public facing environments.
-
----
-
-Go to [Main page](../../README.md)
+Note that this setup does not take into account establishing a secure `http` i.e. `https` communication between the Chainlit instance and the browser, nor does it place emphasis on creating a fool-proof firewall for the compute instance. Please beware when using this in your target domain depending on the prerequisites you need to conform to. This example is good for learning and illustration purposes, please do NOT deploy it in production or public facing environments.
