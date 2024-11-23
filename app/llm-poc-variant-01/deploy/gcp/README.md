@@ -102,7 +102,7 @@ rm -rf /tmp/terraform_1.9.8_linux_386/
 - #### SSH into the Compute Instance
 The compute instance can be accessed over SSH viz:
 ```bash
-gcloud compute ssh --project=<PROJECT_ID> --zone=<PROJECT_GCP_ZONE> lpi-llm-cpu-vm
+gcloud compute ssh --project=<PROJECT_ID> --zone=<PROJECT_GCP_ZONE> lpi-cpu-vm
 ```
 
 ### Destroy infrastructure (cleanup)
