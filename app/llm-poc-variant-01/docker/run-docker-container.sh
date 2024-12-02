@@ -9,9 +9,9 @@ FULL_DOCKER_TAG_NAME="python-3.10-docker-env"
 echo "Running image ${FULL_DOCKER_TAG_NAME}"; echo ""
 
 pullImage() {
-	FULL_DOCKER_TAG_NAME="${DOCKER_USER_NAME}/${FULL_DOCKER_TAG_NAME}"
-
-	docker pull ${FULL_DOCKER_TAG_NAME} || true
+    FULL_DOCKER_TAG_NAME="${DOCKER_USER_NAME}/${FULL_DOCKER_TAG_NAME}"
+    
+    docker pull ${FULL_DOCKER_TAG_NAME} || true
 }
 
 WORKDIR="/home/"
@@ -23,16 +23,16 @@ HF_CACHE_SHARED="--volume ${LOCAL_MODEL_FOLDER}/.cache:/root/.cache"
 set -x
 
 # pullImage
-time docker run --rm  -it --network="host" \
-                --platform="linux/amd64"   \
-                --network="host"           \
-                --add-host=host.docker.internal:host-gateway \
-                --workdir "${WORKDIR}"     \
-                --env OLLAMA_HOST="http://host.docker.internal:11434" \
-                ${HF_CACHE_SHARED}         \
-                ${MODEL_VOLUME_SHARED}     \
-                ${OLLAMA_VOLUME_SHARED}    \
-                "${FULL_DOCKER_TAG_NAME}"
+time docker run --rm  -it                 \
+--platform="linux/amd64"   \
+--network="host"           \
+--add-host=host.docker.internal:host-gateway \
+--workdir "${WORKDIR}"     \
+--env OLLAMA_HOST="http://host.docker.internal:11434" \
+${HF_CACHE_SHARED}         \
+${MODEL_VOLUME_SHARED}     \
+${OLLAMA_VOLUME_SHARED}    \
+"${FULL_DOCKER_TAG_NAME}"
 set +x
 
 echo "* Finished running docker image ${FULL_DOCKER_TAG_NAME}"

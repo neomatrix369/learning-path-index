@@ -8,15 +8,14 @@ It's simple and runs on the local machine with smaller sized and free LLMs.
 
 > Note: credits to this program goes to the original authors of [langchain-python-rag-privategpt](https://github.com/jmorganca/ollama/tree/main/examples/langchain-python-rag-privategpt) from Ivan Martinez who contributed to an example on [jmorganca/ollama](https://github.com/jmorganca/ollama).
 
-
 ## Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Setup](#setup)
-   - [Downloading Learning Path Index datasets](#downloading-learning-path-index-datasets)
-   - [Ingesting files](#ingesting-files)
-     - [via native shell CLI](#via-native-shell-cli)
+  - [Downloading Learning Path Index datasets](#downloading-learning-path-index-datasets)
+  - [Ingesting files](#ingesting-files)
+    - [via native shell CLI](#via-native-shell-cli)
 - [Usage](#usage)
   - [Ask questions](#ask-questions)
     - [via native shell CLI](#via-native-shell-cli-1)
@@ -42,9 +41,9 @@ List out the key requirements needed to run the project, such as:
   - or venv
   - or [pipenv](https://pipenv.pypa.io/en/latest/)
 - Docker (optional)
-- Ollama ([Download & Install(https://ollama.com/download))
+- Ollama ([Download & Install](https://ollama.com/download))
 - Windows:
-  -  Microsoft Visual C++ 14.0 or greater is required (needed when installing ```hnswlib``` )
+  - Microsoft Visual C++ 14.0 or greater is required (needed when installing `hnswlib` )
 
 ## Installation
 
@@ -90,7 +89,6 @@ and start the Ollama server
 ```shell
 ollama serve
 ```
-
 
 ## Setup
 
@@ -181,10 +179,11 @@ If this occurs then use the Docker container to run your commands, instructions 
 
 #### via native shell CLI
 
-Before running ```lpiGPT.py```you need to specify the base URL for the Ollama API or the local instance of Ollama running on your machine. By default this will return a ```None``` value.
+Before running `lpiGPT.py`you need to specify the base URL for the Ollama API or the local instance of Ollama running on your machine. By default this will return a `None` value.
 
 - Windows:
   - This is typically http://localhost:11434 and can be set by using the following in command line:
+
 ```shell
 set OLLAMA_HOST=http://localhost:11434
 ```
@@ -218,8 +217,7 @@ Note: The results will be displayed in a table format with columns for Course Na
 
 To exit the GPT prompt, press Ctrl-C or Ctrl-D and it will return to the Linux/Command-prompt.
 
-
-```bash                                                             
+```bash
 > python3 lpiGPT.py --help
 usage: lpiGPT.py [-h] [--chat-model CHAT_MODEL] [--embeddings-model-name EMBEDDINGS_MODEL_NAME] [--persist-directory PERSIST_DIRECTORY]
                  [--target-source-chunks TARGET_SOURCE_CHUNKS] [--hide-source] [--mute-stream]
@@ -265,7 +263,6 @@ root@[your machine name]:/home#:
 
 in there, type the same commands as in the **via native shell CLI** sections of [Ingesting files](#ingesting-files) and [Ask questions](#ask-questions) respectively.
 
-
 ### Try a different model
 
 ```shell
@@ -280,7 +277,7 @@ Put any and all your files into the `source_documents` directory
 The supported extensions are:
 
 - `.csv`: CSV
-and others, we have trimmed them off from here to keep this example simple and concise.
+  and others, we have trimmed them off from here to keep this example simple and concise.
 
 [back to ToC](#table-of-contents)
 
@@ -300,6 +297,17 @@ For chat models, have a look at [this list](https://github.com/jmorganca/ollama/
 - ...(others)..
 
 _Please share your resources on either or both of the Embeddings and Chat models with us_
+
+## Running the Chainlit UI
+
+![Preview of the Chainlit app](deploy/gcp/chainlit-app-demo.gif "Preview of the Chainlit app")
+
+Chainlit allows us to quickly spin up an LLM friendly UI to interact with different models.
+To start the app:
+
+```bash
+chainlit run chainlit_app.py --host 0.0.0.0 --port 8000
+```
 
 ## Contributing
 
