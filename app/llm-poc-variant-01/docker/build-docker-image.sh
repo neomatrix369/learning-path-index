@@ -4,7 +4,7 @@ set -e
 set -u
 set -o pipefail
 
-DOCKER_USER_NAME="${DOCKER_USER_NAME:-neomatrix369}"
+DOCKER_USER_NAME="${DOCKER_USER_NAME:-$(whoami)}"
 FULL_DOCKER_TAG_NAME="python-3.10-docker-env"
 
 cleanup() {
@@ -68,6 +68,6 @@ rm -f requirements.txt
 
 echo "* Finished building docker image ${FULL_DOCKER_TAG_NAME}"
 
-pushImageToHub
+# pushImageToHub
 
 cleanup

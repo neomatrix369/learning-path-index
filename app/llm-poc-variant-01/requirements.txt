@@ -16,7 +16,7 @@ chainlit==1.1.404
 charset-normalizer==3.4.0
 chevron==0.14.0
 chroma-hnswlib==0.7.6
-chromadb==0.5.20
+chromadb==0.3.26
 click==8.1.7
 coloredlogs==15.0.1
 dataclasses-json==0.5.14
