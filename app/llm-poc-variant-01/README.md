@@ -54,6 +54,11 @@ Install [Ollama](https://github.com/jmorganca/ollama) using the below command on
 curl https://ollama.ai/install.sh | sh
 ```
 
+MacOS alternative
+```bash
+brew install ollama
+```
+
 Pull the model you'd like to use:
 
 ```shell
