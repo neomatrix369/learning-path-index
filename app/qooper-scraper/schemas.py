@@ -52,6 +52,8 @@ class GroupEvent(BaseModel, Generic[T]):
     # store their publishers in a separate group member table,
     # Then keep only the ID on the relevant record
     publisher: GroupMember["id"]
+    group_id: Optional[int | str] = None
+    group_name: Optional[str] = None
 
 
 class GroupEventList(RootModel):
@@ -73,6 +75,8 @@ class Discussion(BaseModel, Generic[T]):
     upvotes_user_ids: list[int] = []
     comments: list[int] = []
     is_comment: bool = False
+    group_id: Optional[int | str] = None
+    group_name: Optional[str] = None
 
 
 class DiscussionList(RootModel):

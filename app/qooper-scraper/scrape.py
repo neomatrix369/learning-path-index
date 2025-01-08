@@ -1,12 +1,15 @@
+import os
 from datetime import datetime
 
 import requests
+from requests.adapters import HTTPAdapter
 from schemas import (
     DiscussionList,
     GroupEventList,
     GroupList,
     GroupMemberList,
 )
+from urllib3.util import Retry
 
 
 class Endpoints:
@@ -23,20 +26,31 @@ class Endpoints:
     )
 
 
-with open("./qooper-token.txt") as f:
-    qooper_token = f.read().strip()
+# region: Retrieve Token
+token_path = os.getenv("QOOPER_TOKEN_PATH", "./qooper-token.txt")
+try:
+    with open(token_path) as f:
+        qooper_token = f.read().strip()
+except FileNotFoundError:
+    raise FileNotFoundError(f"Token file not found at {token_path}")
+except IOError:
+    raise IOError(f"Error reading token file at {token_path}")
+# endregion
 
 session = requests.Session()
+retries = Retry(total=3, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
+session.mount("https://", HTTPAdapter(max_retries=retries))
 session.headers.update({"Authorization": f"Token token={qooper_token}"})
 
+# region: Scrape Qooper
 # Get all group IDs
 groups = session.get(Endpoints.Groups).json()["data"]
 groups_joined = session.get(Endpoints.GroupsJoined).json()["data"]
 raw_groups = groups + groups_joined
 
-print(f'All Groups: {[group['name'] for group in groups]}')
+print(f'All Groups: {[group['name'] for group in raw_groups]}')
 print(
-    f'Retrieving discussions from the following groups: {[group['name'] for group in groups]}'
+    f'Retrieving discussions from the following groups: {[group['name'] for group in raw_groups]}'
 )
 
 
@@ -52,6 +66,9 @@ for group in all_groups.root:
     members: list[dict] = session.get(
         Endpoints.Members.format(group_id=group.id)
     ).json()["data"]
+    for member in members:
+        member["group_id"] = group.id
+        member["group_name"] = group.name
     all_members += members
 
 
@@ -76,7 +93,11 @@ for group in groups_joined:
             )
 
         raw_comments.extend(discussion["comments"])
+        for comment in raw_comments:
+            comment["is_comment"] = True
         discussion["comments"] = [comment["id"] for comment in discussion["comments"]]
+        discussion["group_id"] = group["id"]
+        discussion["group_name"] = group["name"]
 
     all_discussions += discussions
     all_discussions += raw_comments
@@ -93,8 +114,13 @@ for group in groups_joined:
             "data"
         ]
     )
+    for event in events:
+        event["group_id"] = group["id"]
+        event["group_name"] = group["name"]
     all_events += events
+# endregion
 
+# region: Save output to files
 file_timestamp = datetime.now().strftime(r"%Y%m%d-%H%M%S")
 
 with open(f"output/qooper-groups-{file_timestamp}.json", "w") as groups_file:
@@ -108,3 +134,4 @@ with open(f"output/qooper-discussions-{file_timestamp}.json", "w") as discussion
 
 with open(f"output/qooper-events-{file_timestamp}.json", "w") as events_file:
     events_file.write(GroupEventList(all_events).model_dump_json(indent=2))
+# endregion
