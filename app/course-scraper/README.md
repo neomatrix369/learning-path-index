@@ -13,7 +13,7 @@ The Course Scraper Module is a versatile tool designed to fetch course informati
 - [x] Google Cloud Skill Boost: Generative AI
 - [ ] Google Cloud Skill Boost: AD-HOC Courses
 - [ ] [Kaggle Learn Courses](./src/scrapers/kaggle_learn)
-- [ ] Deeplearning.ai Courses
+- [x] Deeplearning.ai Courses
 
 ## Getting Started
 
